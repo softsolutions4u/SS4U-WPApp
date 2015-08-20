@@ -1,0 +1,19 @@
+<ion-view view-title="Bookmarks">
+    <ion-content>
+        <div ng-repeat="post in posts">
+
+            <a class="item item-thumbnail-left" ui-sref="app.post({postId : {{post.ID}}})" >
+                <img ng-src="{{post.featured_image}}" />
+                <h2 >{{post.title}}</h2>
+                <p>{{post.date| date:'yyyy-MM-dd HH:mm:ss'}}</p>
+            </a>
+        </div>
+        
+        <div ng-show="posts && posts.length == 0" class="card">
+            <div class="item item-text-wrap">
+                No bookmarks found!
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,61 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-royal">
+            <ion-nav-back-button class="button-clear">
+                <i class="ion-chevron-left"></i> Back
+            </ion-nav-back-button>
+
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <a class=" button button-icon icon positive ion-search ion-close-circled" ui-sref="app.search"></a>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent">
+        </ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu class="main-menu" side="left">
+        <ion-content>
+            <ion-list>
+                <ion-item class="heading-item item" nav-clear menu-close ui-sref="#">
+                    <img ng-src="{{user.avatar}}">
+                    <div class="heading-bg"></div>
+                    <div class="heading-action">
+                        <h2 class="greeting">Hi {{user.data.displayname}}!</h2>
+                    </div>
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close ui-sref="app.home">
+                    <i class="icon ion-home"></i>
+                    Home
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close ui-sref="app.posts">
+                    <i class="icon ion-ios-paper"></i>
+                    Recent Posts
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close ui-sref="app.tags">
+                    <i class="icon ion-ios-pricetags-outline"></i>
+                    Tags
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close ui-sref="app.categories">
+                    <i class="icon ion-ios-pricetag-outline"></i>
+                    Categories
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close ui-sref="app.authors">
+                    <i class="icon ion-person-stalker"></i>
+                    Authors
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close ui-sref="app.bookmarks">
+                    <i class="icon ion-bookmark"></i>
+                    Bookmarks
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close ng-click="showLogOutMenu()">
+                    <i class="icon ion-log-out"></i>
+                    Logout
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

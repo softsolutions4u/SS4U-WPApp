@@ -1,0 +1,25 @@
+<ion-view view-title="Search">
+    <ion-content>
+        <form ng-submit="getResults()">
+            <div class="list">
+                <div class="item item-input-inset">
+                    <label class="item-input-wrapper">
+                        <input type="text" placeholder="Search" ng-model="formData.term">
+                    </label>
+                    <button class="button button-small">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="list">
+
+            <a ng-repeat="post in posts" class="item item-thumbnail-left" ui-sref="app.post({postId : {{post.ID}}})">
+                <img ng-src="{{post.featured_image.source}}" />
+                <h2 >{{post.title}}</h2>
+                <p>{{post.terms.category[0].name}} - {{post.date | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+            </a>
+
+        </div>
+    </ion-content>
+</ion-view>

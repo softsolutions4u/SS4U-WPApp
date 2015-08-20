@@ -1,0 +1,39 @@
+<ion-view view-title="Recent Posts">
+    <ion-content>
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="list card" ng-repeat="post in posts">
+
+            <div class="item">
+                <h2 >{{post.title}}</h2>
+                <p>{{post.terms.category[0].name}} - {{post.date| date:'yyyy-MM-dd HH:mm:ss'}}</p>
+            </div>
+
+            <div class="item item-image">
+                <img class="full-image" ng-src="{{post.featured_image.source}}" />
+            </div>
+
+            <div class="item tabs tabs-secondary tabs-icon-left">                
+                <a class="tab-item" ng-click="shareAnywhere('{{post.title}}', '{{post.title}}', '{{post.featured_image.source}}', '{{post.link}}')">
+                    <i class="icon ion-share"></i>
+                    Share
+                </a>
+
+                <a class="tab-item" ui-sref="app.post({postId : {{post.ID}}})">
+                    <i class="icon ion-log-in"></i>
+                    Read More
+                </a>
+                
+                <span class="tab-item" ng-click="addBookmark('{{post.ID}}', '{{post.title}}', '{{post.date}}', '{{post.featured_image.source}}')" >
+                    <i class="icon ion-bookmark"></i>
+                    Bookmark
+                </span>
+            </div>
+
+        </div>
+        <div ng-show="posts && posts.length == 0" class="card">
+            <div class="item item-text-wrap">
+                No posts found!
+            </div>
+        </div>        
+    </ion-content>
+</ion-view>

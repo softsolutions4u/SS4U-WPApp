@@ -1,0 +1,10 @@
+<ion-view view-title="Authors">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-icon-right" ng-repeat="author in authors" ui-sref="app.author({authorId : {{author.ID}}})">
+                {{author.name}}
+                <i class="icon ion-arrow-right-c"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

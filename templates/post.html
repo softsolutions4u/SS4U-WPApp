@@ -1,0 +1,45 @@
+<ion-view class="post-view" view-title="{{post.title}}">
+    <ion-content class="padding">
+        <div class="list card">
+
+            <div class="item">
+                <h2>{{post.title}}</h2>
+                <p>{{post.terms.category[0].name}} - {{post.modified| date:'yyyy-MM-dd HH:mm:ss'}}</p>
+            </div>
+
+            <div class="item item-body">
+                <img class="full-image" ng-src="{{post.featured_image.source}}" />
+                <p ng-bind-html="content"></p>                
+            </div>
+
+            <div class="item tabs tabs-secondary tabs-icon-left">                
+                <a class="tab-item" ng-click="shareAnywhere()">
+                    <i class="icon ion-share"></i>
+                    Share
+                </a>
+            </div>
+
+        </div>
+        <div class="comments">
+            <div class="list">
+                <a class="item item-avatar" ng-repeat="comment in comments" href="#" ng-class="{highlighted: comment.ID === new_comment_id}">
+                    <img ng-src="{{comment.user_gravatar}}">
+                    <h2  ng-bind-html="comment.author.name"><span class="comment-date" am-time-ago="comment.date"></span></h2>
+                    <p class="message-content" ng-bind-html="comment.content"></p>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="new-comment post-footer bar bar-footer">
+        <form name="comment_form" class="row" novalidate>
+            <div class="col col-80 content col-center">
+                <input class="new-comment-message" type="text" placeholder="Leave a comment..." ng-model="new_comment" required></input>
+            </div>
+            <div class="col col-20 button-container col-center">
+                <button class="button button-clear send" type="submit" ng-click="addComment()" ng-disabled="comment_form.$invalid">
+                    Send
+                </button>
+            </div>
+        </form>
+    </ion-footer-bar>
+</ion-view>
