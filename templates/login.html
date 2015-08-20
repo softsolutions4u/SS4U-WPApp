@@ -1,39 +1,39 @@
-<ion-view class="login-view">
-  <ion-nav-bar class="view-navigation">
-    <ion-nav-back-button>
-    </ion-nav-back-button>
-  </ion-nav-bar>
-  <ion-content class="padding">
-    <div class="row form-heading">
-      <div class="col col-center">
-        <h1 class="form-title">Welcome back</h1>
-      </div>
-    </div>
-    <div class="row form-wrapper">
-      <div class="col">
-        <form name="login_form" class="" novalidate>
-          <div class="list input-fields">
-            <label class="item item-input">
-              <span class="input-label">Username</span>
-              <input type="text" name="user_name" ng-model="user.userName" required>
-            </label>
-            <label class="item item-input" show-hide-container>
-              <span class="input-label">Password</span>
-              <input type="password" name="password" ng-model="user.password" required show-hide-input>
-            </label>
-            <button type="submit" class="login button button-block" ng-click="doLogin()" ng-disabled="login_form.$invalid">
-              Log in
-            </button>
-            <p ng-show="error" class="message error">{{error}}</p>
+<ion-view class="login-view app_bg">
+  <ion-content  scroll="false">
+    <div class="form-wrapper">
+      <div class="centered">
+        <div class="row padding-top padding-left padding-right">
+          <div class="col col-center">
+            <div class="header-wrapper">
+              <h2 class="header-title text-center">User login</h2>
+              <form name="login_form" novalidate>
+                <div class="list ">
+                  <label class="item item-input">
+                    <input type="text" name="user_name" placeholder= "Username" ng-model="user.userName" required>
+                  </label>
+                  <label class="item item-input item-icon-right" show-hide-container>
+                    <i class="icon ion-eye" on-touch="showPassword = !showPassword"></i>
+                    <input type="password" id="password" placeholder="Password" ng-model="user.password" ng-hide="showPassword">
+                    <input type="text" id="passwordRaw" placeholder="Password" ng-model="user.password" ng-show="showPassword">
+                  </label>
+                  <button type="submit" class="login-button button button-block button-assertive" ng-click="doLogin()" ng-disabled="login_form.$invalid">
+                    Log in
+                  </button>
+                  <p ng-show="error" class="message error">{{error}}</p>
+                </div>
+              </form>
+            </div>
           </div>
-        </form>
-        <div class="alternative-actions">
-          <a class="forgot-password button button-small button-clear" ui-sref="forgot_password">
-            Forgot Password?
-          </a>
-          <a class="sign-up button button-small button-clear" ui-sref="register">
-            Sign Up
-          </a>
+        </div>
+        <div class="row padding alternative-actions">
+          <span class="action-links col">
+            <a class="align-left forgot-password button button-small button-clear" ui-sref="forgot_password">
+              Forgot Password?
+            </a>
+            <a class="align-right sign-up button button-small button-clear" ui-sref="register">
+              Sign Up
+            </a>
+          </span>
         </div>
       </div>
     </div>

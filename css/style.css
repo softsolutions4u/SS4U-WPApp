@@ -40,6 +40,16 @@ body {
     font-family: sans-serif;
     font-size: 14px;
 }
+
+.app_bg1 {
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+
 .app_bg {
     background: url('../img/body-bg.png') no-repeat;
     background-size: cover;
@@ -49,7 +59,8 @@ body {
     position: relative;
 }
 
-/* ---------- Greet View -----------*/
+/* ----------Start Greet View -----------*/
+
 .greet-view .head-title {
     padding-top: 65px;
     text-align: center;
@@ -60,7 +71,7 @@ body {
 }
 
 
-h1 {
+.greet-view h1 {
     font-size: 48px;
     text-shadow: 0 1px 0 #000;
     color: #fff;
@@ -74,7 +85,7 @@ h1 {
     width: 100%;
 }
 
-.bottom-content .signup {
+.bottom-content .signup, .bottom-content .signup:hover {
     color: #878787;
     padding: 8px 12px;
     border: 0 none;
@@ -92,17 +103,29 @@ h1 {
     font-style: italic;
     font-weight: 600;
 }
+/* ----------Greet View  End-----------*/
 
-/* Login Page And Registration */
+/* Start Login , ForgotPassword And Registration  Page*/
 .form-wrapper {
-    margin: 0 auto;
-    width: 100%;
-    top: 50%;
-    position: absolute;
-    padding: 0 5px 0 5px;
-    height: 10em;
-    margin-top:-5em;
+  text-align: center;
+  height: 100%;
+  white-space: nowrap;
 }
+ 
+.form-wrapper:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+}
+
 .form-wrapper .header-wrapper{
     position: relative;
     width: 100%;
@@ -119,7 +142,12 @@ h1 {
     font-family: sans-serif;
     font-weight: bold;
 }
-.form-wrapper .header-wrapper .login-button {
+
+.form-wrapper .header-wrapper form {
+    padding: 15px;
+}
+
+.form-wrapper .header-wrapper .login-button, .register-account .login-button {
     font-size: 16px;
     font-family: "OpenSans", sans-serif;
     font-style: italic;
@@ -128,9 +156,16 @@ h1 {
     background: #FF5631;
     min-height: 30px;
     line-height: 31px;
-    margin-top: 20px;
-    margin-bottom: 18px;
+    margin-top: 15px;
     border: 0 none;
+}
+
+.form-wrapper .header-wrapper .item-icon-right .icon {
+    font-size: 20px;
+    right: 0;
+    -webkit-align-items: flex-start;
+    -moz-align-items: flex-start;
+    align-items: flex-start;
 }
 
 .form-wrapper .header-wrapper .item-input:first-child {
@@ -145,250 +180,33 @@ h1 {
 
 .form-wrapper .alternative-actions a.button {
     font-family: sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     color: #fff;
     line-height: 5px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.form-wrapper .alternative-actions span.register-account {
+    width: 100%;
+    padding: 0 25px;
 }
 .form-wrapper .alternative-actions .align-left {
     float: left;
 }
 
-.form-wrapper input[type="text"], .form-wrapper input[type="password"] {
+.form-wrapper input[type="text"], .form-wrapper input[type="password"], .form-wrapper input[type="email"] {
     font-size: 16px;
     margin-bottom: 5px;
 }
 .form-wrapper .alternative-actions .align-right {
     float: right;
 }
-/*
-.greet-view {
-    background-color: #4584b0
-}
-.greet-view .top-content {
-    height: 85%
-}
-.greet-view .top-content .slider {
-    height: 100%
-}
-.greet-view .top-content .slider .slider-slide {
-    width: calc(100vw - 10px)!important
-}
-.greet-view .top-content .slide-content {
-    height: 100%;
-    text-align: center;
-    padding-top: 40px
-}
-.greet-view .top-content .slide-content .slide-image {
-    width: 100%;
-    margin: 30px 0 20px
-}
-.greet-view .top-content .slide-h {
-    color: #FFF;
-    font-weight: 400
-}
-.greet-view .top-content .slide-p {
-    color: rgba(255, 255, 255, .7);
-    font-size: 16px
-}
-.greet-view .top-content .slider-pager {
-    bottom: 2px
-}
-.greet-view .top-content .slider-pager .slider-pager-page i {
-    color: #285675
-}
-.greet-view .top-content .slider-pager .slider-pager-page.active i {
-    color: #FFF
-} 
 
-.greet-view .bottom-content {
-    height: 15%;
-    margin: 0
-}
-.greet-view .bottom-content .login,
-.greet-view .bottom-content .sign-up {
-    border-radius: 6px;
-    font-size: 18px;
-    font-weight: 500
-}
-.greet-view .bottom-content .login {
-    color: rgba(255, 255, 255, .9);
-    background-color: rgba(40, 86, 117, .85);
-    border-color: rgba(38, 83, 113, .9)
-}
-.greet-view .bottom-content .sign-up {
-    color: rgba(40, 86, 117, .9);
-    background-color: rgba(255, 255, 255, .85);
-    border-color: rgba(252, 252, 252, .9)
-} */
-.register-view,
-.login-view,
-.forgot-password-view {
-    background-color: #4584b0
-}
-.register-view .view-navigation .bar,
-.login-view .view-navigation .bar,
-.forgot-password-view .view-navigation .bar {
-    background: 0 0;
-    border: none
-}
-.register-view .view-navigation .back-button *,
-.login-view .view-navigation .back-button *,
-.forgot-password-view .view-navigation .back-button * {
-    color: #FFF
-}
-.register-view ion-content .scroll,
-.login-view ion-content .scroll,
-.forgot-password-view ion-content .scroll {
-    height: 100%
-}
-.register-view .form-heading,
-.login-view .form-heading,
-.forgot-password-view .form-heading {
-    height: 20%
-}
-/*
-.register-view .form-wrapper,
-.login-view .form-wrapper,
-.forgot-password-view .form-wrapper {
-    height: 80%;
-    margin: 0
-} */
+/*Login , ForgotPassword And Registration  Page End */
 
-.register-view .form-title,
-.login-view .form-title,
-.forgot-password-view .form-title {
-    color: #FFF;
-    text-align: center;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: 2px
-}
-.register-view .input-fields .item,
-.login-view .input-fields .item,
-.forgot-password-view .input-fields .item {
-    margin: 10px 0;
-    border-width: 2px;
-    background-color: #417da5
-}
-.register-view .input-fields .item *,
-.login-view .input-fields .item *,
-.forgot-password-view .input-fields .item * {
-    color: #FFF
-}
-.register-view .input-fields .item .input-label,
-.login-view .input-fields .item .input-label,
-.forgot-password-view .input-fields .item .input-label {
-    font-weight: 500
-}
-.register-view .input-fields .item.item-input input,
-.login-view .input-fields .item.item-input input,
-.forgot-password-view .input-fields .item.item-input input {
-    flex: inherit;
-    padding-right: 0
-}
-.register-view .message,
-.login-view .message,
-.forgot-password-view .message {
-    text-align: center;
-    color: #FFF
-}
-.register-view .message.error:before,
-.login-view .message.error:before,
-.forgot-password-view .message.error:before {
-    content: '*';
-    color: #EF473A;
-    text-shadow: 1px 1px 0 rgba(180, 25, 14, .3);
-    margin-right: 5px;
-    font-size: 20px
-}
-.register-view .alternative-actions,
-.login-view .alternative-actions,
-.forgot-password-view .alternative-actions {
-    margin: 0
-}
-.register-view .alternative-actions .button,
-.login-view .alternative-actions .button,
-.forgot-password-view .alternative-actions .button {
-    padding: 0;
-    font-size: 14px;
-    color: rgba(255, 255, 255, .8)
-}
-.register-view .show-hide-input,
-.login-view .show-hide-input,
-.forgot-password-view .show-hide-input {
-    display: inherit;
-    width: 100%
-}
-.register-view .toggle-view-anchor,
-.login-view .toggle-view-anchor,
-.forgot-password-view .toggle-view-anchor {
-    position: absolute;
-    top: 6px;
-    right: 0;
-    height: 34px;
-    line-height: 34px;
-    padding-right: 8px
-}
-.register-view .toggle-view-anchor *,
-.login-view .toggle-view-anchor *,
-.forgot-password-view .toggle-view-anchor * {
-    color: #284e67!important;
-    display: block;
-    font-size: 14px;
-    width: 45px;
-    text-align: center;
-    font-weight: 500
-}
-.login-view .button.login {
-    margin-top: 30px;
-    border-radius: 6px;
-    font-size: 18px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, .9);
-    background-color: rgba(40, 86, 117, .85);
-    border-color: rgba(38, 83, 113, .9)
-}
-.login-view .alternative-actions .sign-up {
-    float: right
-}
-.forgot-password-view .button.recover {
-    margin-top: 30px;
-    border-radius: 6px;
-    font-size: 18px;
-    font-weight: 500;
-    color: rgba(40, 86, 117, .9);
-    background-color: rgba(255, 255, 255, .85);
-    border-color: rgba(252, 252, 252, .9)
-}
-.forgot-password-view .alternative-actions .sign-up {
-    float: right
-}
-.register-view .button.register {
-    margin-top: 30px;
-    border-radius: 6px;
-    font-size: 18px;
-    font-weight: 500;
-    color: rgba(40, 86, 117, .9);
-    background-color: rgba(255, 255, 255, .85);
-    border-color: rgba(252, 252, 252, .9)
-}
-.box {
-        width: 100%;
-        height: 100%;
-        color: #fff;
-}
-.box h1 {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        margin-top: -50px;
-        color: #fff;
-        font-size: 60px;
-        text-align: center;
-        font-weight: bold;
-}
+
 .post-view .comments .item .message-content {
     overflow: inherit;
     text-overflow: inherit;
@@ -478,4 +296,13 @@ h1 {
          url("../fonts/OpenSans-Semibold.woff") format("woff"),
          url("../fonts/OpenSans-Semibold.svg") format("svg");
     font-weight: 600;
+}
+@font-face {
+    font-family: 'OpenSans';
+    src: url('../fonts/OpenSans-SemiboldItalic.ttf') format('truetype'),
+         url("../fonts/OpenSans-SemiboldItalic.eot") format("eot"),
+         url("../fonts/OpenSans-SemiboldItalic.woff") format("woff"),
+         url("../fonts/OpenSans-SemiboldItalic.svg") format("svg");
+    font-weight: 600;
+    font-style: italic;
 }
