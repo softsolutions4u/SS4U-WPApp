@@ -1,11 +1,15 @@
-<ion-view view-title="Home">
+<ion-view view-title="Home" class="home-content main-menu-bg">
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
         <div ng-repeat="post in posts">
-            <a class="item item-thumbnail-left" ui-sref="app.post({postId : {{post.ID}}})" >
-                <img ng-src="{{post.featured_image.source}}" />
-                <h2 >{{post.title}}</h2>
-                <p>{{post.date| date:'yyyy-MM-dd HH:mm:ss'}}</p>
+            <a class="item post-items-list item-icon-right" ui-sref="app.post({postId : {{post.id}}})" >
+                <!--<img ng-src="{{post.featured_image.source}}" />-->
+                <span class="post-item-thumbnail">SP</span>
+                <span class="post-item-content">
+                  <h2 >{{post.title}}</h2>
+                  <p>{{post.date| date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                </span>
+                <i class="icon ion-arrow-right-c"></i>
             </a>
         </div>
 

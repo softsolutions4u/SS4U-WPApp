@@ -1,10 +1,9 @@
 <ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
-        <ion-nav-bar class="bar-royal">
+        <ion-nav-bar class="nav-home-header">
             <ion-nav-back-button class="button-clear">
                 <i class="ion-chevron-left"></i> Back
             </ion-nav-back-button>
-
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
                 </button>
@@ -17,43 +16,52 @@
         </ion-nav-view>
     </ion-side-menu-content>
 
-    <ion-side-menu class="main-menu" side="left">
+    <ion-side-menu class="main-menu main-menu-bg" side="left">
         <ion-content>
             <ion-list>
-                <ion-item class="heading-item item" nav-clear menu-close ui-sref="#">
-                    <img ng-src="{{user.avatar}}">
-                    <div class="heading-bg"></div>
-                    <div class="heading-action">
-                        <h2 class="greeting">Hi {{user.data.displayname}}!</h2>
-                    </div>
+                <ion-item class="profile-heading-item item " nav-clear menu-close ui-sref="#">
+                    <span class="image-border">
+                      <img ng-src="{{user.avatar}}">
+                    </span>
+                    <span class="heading-action">
+                      <h2 class="greeting">
+                        <span>Hi {{user.data.displayname}}!</span> <br/>
+                        <span>Welcome back</span>
+                      </h2>
+                    </span>                  
                 </ion-item>
-                <ion-item class="item-icon-left" menu-close ui-sref="app.home">
+                <ion-item class="item-icon-left menu-items" menu-close ui-sref="app.home">
+                  <span class="menu-icon-border">
                     <i class="icon ion-home"></i>
-                    Home
+                  </span>
+                  <span class="menu-title">Home</span>
                 </ion-item>
-                <ion-item class="item-icon-left" menu-close ui-sref="app.posts">
+                <ion-item class="item-icon-left menu-items" menu-close ui-sref="app.posts">
+                  <span class="menu-icon-border">
                     <i class="icon ion-ios-paper"></i>
-                    Recent Posts
+                  </span>
+                  <span class="menu-title">Recent Posts</span>
+                    
                 </ion-item>
-                <ion-item class="item-icon-left" menu-close ui-sref="app.tags">
-                    <i class="icon ion-ios-pricetags-outline"></i>
-                    Tags
+                <ion-item class="item-icon-left menu-items" menu-close ui-sref="app.tags">
+                  <span class="menu-icon-border">
+                    <i class="icon fa fa-cog"></i>
+                  </span>
+                    <span class="menu-title">Tags</span>
                 </ion-item>
-                <ion-item class="item-icon-left" menu-close ui-sref="app.categories">
-                    <i class="icon ion-ios-pricetag-outline"></i>
-                    Categories
+                <ion-item class="item-icon-left menu-items" menu-close ui-sref="app.categories">
+                  <span class="menu-icon-border">
+                    <i class="icon ion-ios-browsers-outline"></i>
+                    </span>
+                  <span class="menu-title"> Categories</span>
                 </ion-item>
-                <ion-item class="item-icon-left" menu-close ui-sref="app.authors">
-                    <i class="icon ion-person-stalker"></i>
-                    Authors
+                <ion-item class="item-icon-left menu-items" menu-close ui-sref="app.bookmarks">
+                  <span class="menu-icon-border"><i class="icon ion-bookmark"></i></span>
+                  <span class="menu-title">Bookmarks</span>
                 </ion-item>
-                <ion-item class="item-icon-left" menu-close ui-sref="app.bookmarks">
-                    <i class="icon ion-bookmark"></i>
-                    Bookmarks
-                </ion-item>
-                <ion-item class="item-icon-left" menu-close ng-click="showLogOutMenu()">
-                    <i class="icon ion-log-out"></i>
-                    Logout
+                <ion-item class="item-icon-left menu-items last-item" menu-close ui-sref="" ng-click="showLogOutMenu()">
+                  <span class="menu-icon-border"><i class="icon ion-power"></i></span>
+                  <span class="menu-title">Logout</span>
                 </ion-item>
             </ion-list>
         </ion-content>

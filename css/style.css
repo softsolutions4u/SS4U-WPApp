@@ -203,9 +203,173 @@ body {
 .form-wrapper .alternative-actions .align-right {
     float: right;
 }
+.register-view .message,
+.login-view .message,
+.forgot-password-view .message {
+    text-align: center;
+    color: #444
+}
+.register-view .message.error:before,
+.login-view .message.error:before,
+.forgot-password-view .message.error:before {
+   content: '*';
+   color: #EF473A;
+   text-shadow: 1px 1px 0 rgba(180, 25, 14, .3);
+   margin-right: 5px;
+   font-size: 20px
+}
 
 /*Login , ForgotPassword And Registration  Page End */
 
+
+/* Start Home */
+.main-menu-bg {
+    background: url('../img/main_menu_bg.png') no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+.main-menu a.item-content {
+    background: transparent !important;
+}
+.main-menu .item {
+    background: transparent !important;
+    border-color: #fff;
+    color: #fff;
+}
+
+.nav-home-header {
+    color: #fff;
+    border-color: #0c63ee;
+    background-color: #00619D;
+    background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%);
+}
+.nav-home-header button.button-clear.button-clear {
+    color: #fff;
+}
+
+.profile-heading-item a.item-content {
+    width: 100%;
+    padding: 16px 16px 16px 90px;
+    position: relative;
+    min-height: 115px;
+}
+
+.menu-items a.item-content {
+    width: 100%;
+    padding: 20px 6px 20px 40px !important;
+    position: relative;
+    min-height: 75px;
+}
+
+.menu-items.last-item {
+    margin-bottom: 50px;
+}
+.menu-items a.item-content span.menu-title {
+    margin: 10px 0;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 15px;
+    background: rgba(0,0,0, 0.4);
+    padding: 0 4px;
+    color: #fff;
+}
+
+.menu-items a.item-content span.menu-icon-border {
+    max-width: 30px;
+    max-height: 40px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    left: 2%;
+    background-color: #43454C;
+}
+.menu-items a.item-content span.menu-icon-border .icon {
+    left: 0;
+    font-size: 20px;
+    color: #fff;
+}
+
+.profile-heading-item .item-content span.image-border {
+    position: absolute;
+    max-width: 62px;
+    max-height: 82px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    left: 5%;
+}
+
+.profile-heading-item .item-content span.image-border img {
+    width: 100%;
+    height: 100%;
+    max-width: 46px;
+    height: 58px;
+    border-radius: 50%;
+    position: absolute;
+    top: 14%;
+    left: 10%;
+}
+
+.profile-heading-item .item-content span.heading-action {
+    padding: 20px 0 0 0;
+    color: #fff;
+    float: left;
+    width: 100%;
+}
+.profile-heading-item .item-content span.heading-action span {
+    color: #fff;
+    padding: 0 0 4px 0;
+    display: inline-block;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+.home-content .post-items-list {
+    padding: 20px 5px 20px 50px;
+    min-height: 75px;
+    width: 100%;
+    position: relative;
+}
+
+.home-content .post-items-list .icon {
+    color: #484448;
+}
+.home-content .post-items-list span.post-item-thumbnail {
+    position: absolute;
+    max-width: 36px;
+    max-height: 36px;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    background: #009322;
+    color: #fff;
+    left: 5px;
+    line-height: 22px;
+    font-size: 14px;
+}
+
+.ionic-refresher-content .icon-pulling,  .ionic-refresher-content .text-pulling{
+    color: #fff !important;
+}
+
+.home-content .post-items-list span.post-item-content h2 {
+    font-size: 15px;
+    line-height: 15px;
+    color: #000;
+}
+
+.home-content .post-items-list span.post-item-content p {
+    font-size: 12px;
+    color: #ccc;
+    line-height: 15px;
+}
+/*Home End*/
 
 .post-view .comments .item .message-content {
     overflow: inherit;

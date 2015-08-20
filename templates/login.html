@@ -13,13 +13,14 @@
                   </label>
                   <label class="item item-input item-icon-right" show-hide-container>
                     <i class="icon ion-eye" on-touch="showPassword = !showPassword"></i>
-                    <input type="password" id="password" placeholder="Password" ng-model="user.password" ng-hide="showPassword">
+                    <input type="password" id="password" placeholder="Password" ng-model="user.password" ng-hide="showPassword" required>
                     <input type="text" id="passwordRaw" placeholder="Password" ng-model="user.password" ng-show="showPassword">
                   </label>
                   <button type="submit" class="login-button button button-block button-assertive" ng-click="doLogin()" ng-disabled="login_form.$invalid">
                     Log in
                   </button>
                   <p ng-show="error" class="message error">{{error}}</p>
+                  <p ng-show="message" class="message">{{message}}</p>
                 </div>
               </form>
             </div>
