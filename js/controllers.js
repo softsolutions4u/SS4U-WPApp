@@ -89,7 +89,6 @@ angular.module('starter.controllers', [])
 
         .controller('PostsCtrl', function ($scope, $stateParams, $cordovaSocialSharing, $localStorage, $ionicLoading, PostService) {
             var filters = [];
-                $scope.posts = [];
     
             $scope.shareAnywhere = function(message, subject, image, url) {
                 $cordovaSocialSharing.share(message, subject, image, url);
@@ -118,7 +117,7 @@ angular.module('starter.controllers', [])
                 var bookmarks = $localStorage.bookmarks;
                 var index = bookmarks.id.indexOf(postId);
                 if (index === -1) {
-                    bookmarks.data.push({ID: postId, title: title, date: date, featured_image: featured_image});
+                    bookmarks.data.push({id: postId, title: title, date: date, featured_image: featured_image});
                     bookmarks.id.push(postId);
                 } else {
                     bookmarks.data.splice(index,1);
