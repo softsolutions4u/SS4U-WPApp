@@ -119,7 +119,7 @@ angular.module("starter.services", [])
                 if (filters.length) {
                     filterQuery = '&' + filters.join('&');
                 }
-                postsApi = WORDPRESS_JSON_API_URL + 'posts?_jsonp=JSON_CALLBACK'+ filterQuery;
+                postsApi = WORDPRESS_API_URL + 'get_recent_posts/?callback=JSON_CALLBACK'+ filterQuery;
                 return $http.jsonp(postsApi).success(function(e) {
                     defer.resolve(e);
                 }).error(function(e) {
@@ -162,5 +162,16 @@ angular.module("starter.services", [])
                 }).error(function(e) {
                     s.reject(e);
                 }), s.promise;
+            };
+            this.shortenPosts = function(posts) {
+                var wordCount = 500;
+                return _.map(posts, function(post) {
+                    if (post.content.length > wordCount) {
+                        var content = post.content.substr(0, wordCount);
+                            content = content.substr(0, Math.min(content.length, content.lastIndexOf("</p>")));
+                        post.content = content;
+                    }
+                    return post;
+                });
             };
         });

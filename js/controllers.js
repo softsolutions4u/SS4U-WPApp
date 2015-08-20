@@ -89,7 +89,8 @@ angular.module('starter.controllers', [])
 
         .controller('PostsCtrl', function ($scope, $stateParams, $cordovaSocialSharing, $localStorage, $ionicLoading, PostService) {
             var filters = [];
-
+                $scope.posts = [];
+    
             $scope.shareAnywhere = function(message, subject, image, url) {
                 $cordovaSocialSharing.share(message, subject, image, url);
             };
@@ -99,8 +100,9 @@ angular.module('starter.controllers', [])
                     template: 'Loading posts'
                 });
                 PostService.getPosts(filters)
-                    .then(function (data) {
-                        $scope.posts = data;
+                    .then(function (res) {
+                        var shortenPosts = PostService.shortenPosts(res.posts);                        
+                        $scope.posts = shortenPosts;
                         $ionicLoading.hide();
                         $scope.$broadcast('scroll.refreshComplete');
                     }, function(e) {
@@ -138,19 +140,6 @@ angular.module('starter.controllers', [])
                 filters.push('filter[author]='+ $stateParams.authorId);
             }
 
-            $ionicLoading.show({
-                template: 'Loading posts'
-            });
-            PostService.getPosts(filters)
-                    .then(function (data) {
-                        $scope.posts = data;
-                        $ionicLoading.hide();
-                    }, function(e) {
-                        $ionicLoading.show({
-                            template: 'Error occured. try after sometime',
-                            duration: 3000
-                        });
-                    });
             $scope.doRefresh();        
         })
 
