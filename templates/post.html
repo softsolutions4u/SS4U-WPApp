@@ -1,24 +1,29 @@
-<ion-view class="post-view" view-title="{{post.title}}">
+<ion-view class="post-view post-detail-view" view-title="{{post.title}}">
     <ion-content class="padding">
         <div class="list card">
-
-            <div class="item">
+            <div class="item post-item-title">
                 <h2>{{post.title}}</h2>
-                <p>{{post.terms.category[0].name}} - {{post.modified| date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                <p class="font-11">Posted by {{post.author.name}} <span>{{post.date | parseDate | amTimeAgo}}</span></p>
             </div>
 
             <div class="item item-body">
-                <img class="full-image" ng-src="{{post.featured_image.source}}" />
-                <p ng-bind-html="content"></p>                
+                <div ng-bind-html="post.content"></div>                
             </div>
 
-            <div class="item tabs tabs-secondary tabs-icon-left">                
-                <a class="tab-item" ng-click="shareAnywhere()">
-                    <i class="icon ion-share"></i>
-                    Share
+            <div class="item post-item-share">
+              <span class="align-left">
+                <a ng-href="#">A+</a>
+                <a ng-href="#">A-</a>
+              </span>
+              <span class="align-right social-icons">
+                <a class="fblike" ng-click="">
+                    <i class="fa fa-thumbs-o-up"></i>
                 </a>
+                <a class="social-share" ng-click="shareAnywhere()">
+                    <i class="icon ion-android-share-alt"></i>
+                </a>
+              </span>
             </div>
-
         </div>
         <div class="comments">
             <div class="list">

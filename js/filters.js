@@ -25,9 +25,9 @@ angular.module("starter.filters", [])
             return function (type) {
                 var Styles = new Array();
                 Styles['square']   = [
-                    {'background-color':'blue'},
-                    {'background-color':'red'},
-                    {'background-color':'pink'}
+                    {'background-color':'#009322'},
+                    {'background-color':'#246D92'},
+                    {'background-color':'#D7002E'}
                 ];
                 
                 var styleByType = Styles[type];
@@ -35,4 +35,9 @@ angular.module("starter.filters", [])
                 
                 return style;
             };
-        }]);
+        }])
+        .filter("parseDate", function() {
+            return function(date) {
+                return Date.parse(date);
+            };
+        });

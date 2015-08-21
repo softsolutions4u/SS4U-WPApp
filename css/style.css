@@ -192,16 +192,16 @@ body {
     width: 100%;
     padding: 0 25px;
 }
-.form-wrapper .alternative-actions .align-left {
-    float: left;
+.align-left {
+    float: left !important;
 }
 
 .form-wrapper input[type="text"], .form-wrapper input[type="password"], .form-wrapper input[type="email"] {
     font-size: 16px;
     margin-bottom: 5px;
 }
-.form-wrapper .alternative-actions .align-right {
-    float: right;
+.align-right {
+    float: right !important;
 }
 .register-view .message,
 .login-view .message,
@@ -249,6 +249,7 @@ body {
 .nav-home-header button.button-clear.button-clear {
     color: #fff;
 }
+
 
 .profile-heading-item a.item-content {
     width: 100%;
@@ -331,7 +332,7 @@ body {
 }
 
 .home-content .post-items-list {
-    padding: 20px 5px 20px 50px;
+    padding: 20px 5px 20px 52px;
     min-height: 75px;
     width: 100%;
     position: relative;
@@ -349,7 +350,7 @@ body {
     padding: 8px;
     background: #009322;
     color: #fff;
-    left: 5px;
+    left: 7px;
     line-height: 22px;
     font-size: 14px;
     text-transform: uppercase;
@@ -365,12 +366,151 @@ body {
     color: #000;
 }
 
-.home-content .post-items-list span.post-item-content p {
+.home-content .post-items-list span.post-item-content p,
+.post-detail-view .post-item-title p {
     font-size: 12px;
-    color: #ccc;
+    color: #666;
     line-height: 15px;
 }
 /*Home End*/
+
+/* Start Recent post */
+.recent-posts .item.post-item-title {
+    padding: 6px 10px 6px 10px;
+    background-color: #2D2F35;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.recent-posts .item.post-item-title h2 {
+    color: #fff;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 600;
+}
+.recent-posts .item.post-item-title p {
+    color: #ddd;
+}
+
+.font-11 {
+    font-size: 11px !important;
+    line-height: 14px !important;
+}
+.recent-posts .post-item-content p {
+    color: #666;
+    margin-bottom: 10px;
+    white-space: normal;
+    font-size: 11px ;
+    line-height: 14px;
+}
+.recent-posts .post-item-content div.post-item-content-body {
+    white-space: normal;
+    font-size: 11px ;
+    line-height: 14px;
+    color: #666;
+    min-height: 30px;
+}
+.recent-posts .post-item-content {
+    padding: 10px;
+}
+.recent-posts .share-post-item {
+    width: 100%;
+    float: left;
+}
+.recent-posts .share-post-item span i.icon {
+    font-size: 27px;
+    color: #2D2F35;
+}
+.recent-posts .share-post-item a {
+    background-color: #00619D;
+    padding: 4px 16px;
+    line-height: 14px;
+    font-size: 10px;
+    min-height: 22px;
+    color: #fff;
+    border-color: #00619D;
+    font-weight: 600;
+    margin-top: 3px;
+}
+
+.post-detail-view {
+    background: #fff;
+}
+
+.post-detail-view .post-item-title,
+.post-detail-view .item-body {
+    padding: 15px 7px 10px 7px;
+    
+}
+.post-detail-view .item-body {
+    border: 0 none;
+    padding: 0px 7px 5px 7px;
+    font-size: 11px;
+}
+.post-detail-view .item-body img , 
+.post-detail-view .item-body audio,
+.post-detail-view .item-body iframe,
+.post-detail-view .item-body video {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+    display: inline-block;
+}
+.post-detail-view ul li {
+    font-size: inherit;
+}
+.post-detail-view .item-body p,  
+.post-detail-view ul li ,
+post-detail-view a {
+    font-size: inherit;
+}
+
+.post-detail-view .post-item-share {
+    border: 1px solid #454445;
+    background: #454445;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
+    padding: 3px;
+    margin-top: 20px;
+}
+.post-detail-view .post-item-share span {
+    width: 50%;
+    line-height: 15px;
+}
+.post-detail-view .post-item-share span a {
+    color: #fff;
+    padding-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.post-detail-view .post-item-share span.social-icons{
+    text-align: right;
+}
+.post-detail-view .post-item-share span.social-icons a {
+    padding-right: 15px;
+    padding-left: 0;
+}
+/* Recent post End */
+
+/* Start Book marks */
+.bookmarks .bookmark-container {
+    padding: 8px 16px;
+    word-wrap: normal;
+}
+.bookmarks .bookmark-container h2 {
+    margin-bottom: 2px;
+    font-size: 16px;
+}
+.bookmarks .bookmark-container p span, 
+.post-item-content p span ,
+.post-detail-view .post-item-title p span{
+    color: #000;
+}
+/* Bookmarks End */
 
 .post-view .comments .item .message-content {
     overflow: inherit;

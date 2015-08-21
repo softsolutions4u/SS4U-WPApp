@@ -5,8 +5,8 @@
             <a class="item post-items-list item-icon-right" ui-sref="app.post({postId : {{post.id}}})" >                
                 <span ng-style="{{'square' | getRandomTileStyle}}" class="post-item-thumbnail">{{post.title | getTileText: 2}}</span>
                 <span class="post-item-content">
-                  <h2>{{post.title | rawHtml}}</h2>
-                  <p>{{post.date | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                  <h2 >{{post.title}}</h2>
+                  <p>Posted by {{post.author.name}} <span>{{post.date | parseDate | amTimeAgo}}</span></p>
                 </span>
                 <i class="icon ion-arrow-right-c"></i>
             </a>
