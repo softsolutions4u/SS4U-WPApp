@@ -352,6 +352,7 @@ body {
     left: 5px;
     line-height: 22px;
     font-size: 14px;
+    text-transform: uppercase;
 }
 
 .ionic-refresher-content .icon-pulling,  .ionic-refresher-content .text-pulling{
