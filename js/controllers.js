@@ -143,6 +143,24 @@ angular.module('starter.controllers', [])
         })
 
         .controller('PostCtrl', function ($scope, $stateParams, $sce, $ionicLoading, $cordovaSocialSharing, PostService, AccessService, $ionicScrollDelegate) {
+            $scope.minFontSize   = 12;
+            $scope.maxFontSize   = 30;
+            $scope.fontSizeSteps = 2;
+            
+            $scope.fontSize = $scope.minFontSize;
+            
+            $scope.increase = function() {
+                if ($scope.fontSize < $scope.maxFontSize) {
+                    $scope.fontSize = $scope.fontSize + $scope.fontSizeSteps;
+                }
+            };
+            
+            $scope.decrease = function() {
+                if ($scope.fontSize > $scope.minFontSize) {
+                    $scope.fontSize = $scope.fontSize - $scope.fontSizeSteps;
+                }
+            };
+            
             $scope.shareAnywhere = function() {
                 $cordovaSocialSharing.share($scope.post.title, $scope.post.title, $scope.post.featured_image.source, $scope.post.link);
             };

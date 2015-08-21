@@ -7,13 +7,13 @@
             </div>
 
             <div class="item item-body">
-                <div ng-bind-html="post.content"></div>                
+                <div ng-style="{'font-size': fontSize + 'px'}" ng-bind-html="post.content"></div>                
             </div>
 
             <div class="item post-item-share">
               <span class="align-left">
-                <a ng-href="#">A+</a>
-                <a ng-href="#">A-</a>
+                <a ng-href="#" ng-click="increase()">A+</a>
+                <a ng-href="#" ng-click="decrease()">A-</a>
               </span>
               <span class="align-right social-icons">
                 <a class="fblike" ng-click="">
