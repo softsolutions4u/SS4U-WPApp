@@ -2,7 +2,7 @@
 angular.module("underscore", []).factory("_", function() {
     return window._
 }),
-angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment'])
+angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
         .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor) {
             $ionicPlatform.ready(function () {
                 ConnectivityMonitor.startWatching();

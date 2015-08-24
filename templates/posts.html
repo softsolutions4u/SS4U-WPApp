@@ -9,7 +9,7 @@
             </div>
 
             <div class="item post-item-content icon-left">
-              <div class="post-item-content-body" ng-bind-html="post.content | rawHtml"></div>
+              <div post-details class="post-item-content-body" ng-bind-html="post.content | rawHtml"></div>
               <div class="share-post-item">
                 <span class="align-left" ng-click="addBookmark('{{post.id}}', '{{post.title}}', '{{post.date}}', '{{post.featured_image.source}}')" >
                     <i class="icon ion-bookmark"></i>

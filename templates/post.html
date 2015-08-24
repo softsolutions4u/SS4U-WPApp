@@ -7,7 +7,7 @@
             </div>
 
             <div class="item item-body">
-                <div ng-style="{'font-size': fontSize + 'px'}" ng-bind-html="post.content"></div>                
+                <div post-details ng-style="{'font-size': fontSize + 'px'}" ng-bind-html="post.content | rawHtml"></div>                
             </div>
 
             <div class="item post-item-share">

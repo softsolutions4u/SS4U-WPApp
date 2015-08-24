@@ -354,6 +354,7 @@ body {
     line-height: 22px;
     font-size: 14px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .ionic-refresher-content .icon-pulling,  .ionic-refresher-content .text-pulling{
@@ -447,10 +448,15 @@ body {
     padding: 0px 7px 5px 7px;
     font-size: 11px;
 }
+.recent-posts .post-item-content-body img , 
+.recent-posts .post-item-content-body audio,
+.recent-posts .post-item-content-body iframe,
+.recent-posts .post-item-content-body video, 
 .post-detail-view .item-body img , 
 .post-detail-view .item-body audio,
 .post-detail-view .item-body iframe,
-.post-detail-view .item-body video {
+.post-detail-view .item-body video 
+{
     width: 100%;
     height: auto;
     margin: 10px 0;
