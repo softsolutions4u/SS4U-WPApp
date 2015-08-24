@@ -1,10 +1,12 @@
-<ion-view view-title="Categories">
+<ion-view view-title="Categories" class="categories main-menu-bg">
     <ion-content>
         <ion-list>
-            <ion-item class="item-icon-right" ng-repeat="category in categories" href="#/app/categories/{{category.ID}}">
-                {{category.name}}
-                <i class="icon ion-arrow-right-c"></i>
-            </ion-item>
+          <a ng-repeat="category in categories" class="item item-thumbnail-left item-icon-right" href="#/app/categories/{{category.ID}}">
+            <img src="../img/ionic.png">
+            <h2>{{category.name}}</h2>
+            <p>{{category.description}}</p>
+          <i class="icon ion-arrow-right-c"></i>
+          </a>
         </ion-list>
     </ion-content>
 </ion-view>

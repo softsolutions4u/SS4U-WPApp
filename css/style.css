@@ -39,6 +39,7 @@
 body {
     font-family: sans-serif;
     font-size: 14px;
+    line-height: 1.5em;
 }
 
 .app_bg1 {
@@ -280,7 +281,8 @@ body {
 
 .menu-items a.item-content span.menu-icon-border {
     max-width: 30px;
-    max-height: 40px;
+    /*max-height: 40px;*/
+    max-height: 30px;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -297,7 +299,8 @@ body {
 .profile-heading-item .item-content span.image-border {
     position: absolute;
     max-width: 62px;
-    max-height: 82px;
+    max-height: 62px;
+    /*max-height: 82px;*/
     width: 100%;
     height: 100%;
     border: 1px solid #fff;
@@ -309,7 +312,8 @@ body {
     width: 100%;
     height: 100%;
     max-width: 46px;
-    height: 58px;
+    max-height: 46px;
+    /*height: 58px;*/
     border-radius: 50%;
     position: absolute;
     top: 14%;
@@ -361,13 +365,16 @@ body {
     color: #fff !important;
 }
 
-.home-content .post-items-list span.post-item-content h2 {
+.home-content .post-items-list span.post-item-content h2,
+.categories a.item h2
+{
     font-size: 15px;
-    line-height: 15px;
+    line-height: 16px;
     color: #000;
 }
 
 .home-content .post-items-list span.post-item-content p,
+.categories a.item p,
 .post-detail-view .post-item-title p {
     font-size: 12px;
     color: #666;
@@ -434,10 +441,6 @@ body {
     margin-top: 3px;
 }
 
-.post-detail-view {
-    background: #fff;
-}
-
 .post-detail-view .post-item-title,
 .post-detail-view .item-body {
     padding: 15px 7px 10px 7px;
@@ -448,12 +451,17 @@ body {
     padding: 0px 7px 5px 7px;
     font-size: 11px;
 }
-.recent-posts .post-item-content-body img , 
 .recent-posts .post-item-content-body audio,
+.post-detail-view .item-body audio
+{
+    width: 100%;
+    visibility: visible !important;
+}
+
+.recent-posts .post-item-content-body img , 
 .recent-posts .post-item-content-body iframe,
 .recent-posts .post-item-content-body video, 
 .post-detail-view .item-body img , 
-.post-detail-view .item-body audio,
 .post-detail-view .item-body iframe,
 .post-detail-view .item-body video 
 {
@@ -462,13 +470,17 @@ body {
     margin: 10px 0;
     display: inline-block;
 }
-.post-detail-view ul li {
-    font-size: inherit;
-}
+
 .post-detail-view .item-body p,  
+.post-detail-view .item-body h2,  
+.post-detail-view .item-body h3,  
+.post-detail-view .item-body h4,
+.post-detail-view .item-body span,
+.post-detail-view .item-body div,
 .post-detail-view ul li ,
-post-detail-view a {
+.post-detail-view a {
     font-size: inherit;
+    line-height: 1.5em;
 }
 
 .post-detail-view .post-item-share {
@@ -517,6 +529,27 @@ post-detail-view a {
     color: #000;
 }
 /* Bookmarks End */
+
+/* Categories */
+.categories a.item {
+    padding: 12px 10px 10px 50px;
+    min-height: 58px;
+}
+.categories a.item img {
+    max-width: 30px;
+    max-height: 30px;
+    top: 12px;
+}
+.categories a.item h2 {
+    font-size: 14px;
+}
+.categories a.item p {
+    font-size: 11px;
+    color: #999;
+}
+.categories a.item .icon {
+    color: #484448;
+}
 
 .post-view .comments .item .message-content {
     overflow: inherit;

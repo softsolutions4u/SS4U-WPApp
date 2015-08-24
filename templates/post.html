@@ -1,4 +1,4 @@
-<ion-view class="post-view post-detail-view" view-title="{{post.title}}">
+<ion-view class="post-view post-detail-view main-menu-bg" view-title="{{post.title}}" >
     <ion-content class="padding">
         <div class="list card">
             <div class="item post-item-title">
@@ -7,7 +7,7 @@
             </div>
 
             <div class="item item-body">
-                <div post-details ng-style="{'font-size': fontSize + 'px'}" ng-bind-html="post.content | rawHtml"></div>                
+                <div post-details ng-style="{'font-size': fontSize + 'px'}" ng-bind-html="post.content | rawHtml"></div>
             </div>
 
             <div class="item post-item-share">
@@ -38,7 +38,7 @@
     <ion-footer-bar class="new-comment post-footer bar bar-footer">
         <form name="comment_form" class="row" novalidate>
             <div class="col col-80 content col-center">
-                <input class="new-comment-message" type="text" placeholder="Leave a comment..." ng-model="new_comment" required></input>
+                <input class="new-comment-message" type="text" placeholder="Leave a comment..." ng-model="new_comment" required />
             </div>
             <div class="col col-20 button-container col-center">
                 <button class="button button-clear send" type="submit" ng-click="addComment()" ng-disabled="comment_form.$invalid">
