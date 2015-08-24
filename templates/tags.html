@@ -6,5 +6,11 @@
                 <i class="icon ion-arrow-right-c"></i>
             </ion-item>
         </ion-list>
+      
+      <div ng-show="tags && tags.length == 0" class="card">
+        <div class="item item-text-wrap">
+          No Tags found!
+        </div>
+      </div>
     </ion-content>
 </ion-view> 

@@ -162,7 +162,7 @@ angular.module('starter.controllers', [])
             };
             
             $scope.shareAnywhere = function() {
-                $cordovaSocialSharing.share($scope.post.title, $scope.post.title, $scope.post.featured_image.source, $scope.post.link);
+                $cordovaSocialSharing.share($scope.post.title, $scope.post.title, $scope.post.content, $scope.post.link);
             };
             $ionicLoading.show({
                 template: 'Loading post'
