@@ -89,10 +89,6 @@ angular.module('starter.controllers', [])
 
         .controller('PostsCtrl', function ($scope, $stateParams, $cordovaSocialSharing, $localStorage, $ionicLoading, PostService) {
             var filters = [];
-    
-            $scope.shareAnywhere = function(message, subject, image, url) {
-                $cordovaSocialSharing.share(message, subject, image, url);
-            };
             
             $scope.doRefresh = function() {
                 $ionicLoading.show({
@@ -112,12 +108,12 @@ angular.module('starter.controllers', [])
                     });
               };
             
-            $scope.addBookmark = function(postId, title, date, featured_image) {
+            $scope.addBookmark = function(postId, title, date) {
                 $localStorage.$default({bookmarks: {id:[], data: []}});
                 var bookmarks = $localStorage.bookmarks;
                 var index = bookmarks.id.indexOf(postId);
                 if (index === -1) {
-                    bookmarks.data.push({id: postId, title: title, date: date, featured_image: featured_image});
+                    bookmarks.data.push({id: postId, title: title, date: date});
                     bookmarks.id.push(postId);
                 } else {
                     bookmarks.data.splice(index,1);
@@ -171,7 +167,7 @@ angular.module('starter.controllers', [])
                 $ionicLoading.show({
                     template: "Submiting comment..."
                 });
-                PostService.submitComment($scope.post.ID, $scope.new_comment).then(function(n) {
+                PostService.submitComment($scope.post.id, $scope.new_comment).then(function(n) {
                     if ("ok" == n.status) {
                         var o = AccessService.getUser(),
                             newPost = {
@@ -198,23 +194,20 @@ angular.module('starter.controllers', [])
             };
             PostService.getPost($stateParams.postId)
                 .then(function (data) {
-                    $scope.post = data;
-                    // must use trustAsHtml to get raw HTML from WordPress
-                    $scope.content = $sce.trustAsHtml(data.content);
-                    PostService.getComments(data.ID)
-                        .then(function (comments) {
-                            $scope.comments = _.map(comments, function(comment) {
-                                return comment.author ? (PostService.getUserGravatar(comment.author.ID).then(function(n) {
-                                    comment.user_gravatar = n.avatar;
-                                }), comment) : comment;
-                            });
-                            $ionicLoading.hide();
-                        }, function(e) {
-                            $ionicLoading.show({
-                                template: 'Error occured. try after sometime',
-                                duration: 3000
-                            });
+                    if ("ok" == n.status) {
+                        $scope.post = data.post;
+                        $scope.comments = _.map($scope.post.comments, function(comment) {
+                            return comment.author ? (PostService.getUserGravatar(comment.author.id).then(function(n) {
+                                comment.user_gravatar = n.avatar;
+                            }), comment) : comment;
                         });
+                        $ionicLoading.hide();
+                    } else {
+                        $ionicLoading.show({
+                            template: 'Error occured. try after sometime',
+                            duration: 3000
+                        });
+                    }
                 }, function(e) {
                     $ionicLoading.show({
                         template: 'Error occured. try after sometime',
@@ -223,42 +216,29 @@ angular.module('starter.controllers', [])
                 });
         })
 
-        .controller('CategoryCtrl', function ($scope, $http, WORDPRESS_JSON_API_URL) {
+        .controller('CategoryCtrl', function ($scope, $http, WORDPRESS_API_URL) {
             // Get categories
-            var categoryApi = WORDPRESS_JSON_API_URL + 'taxonomies/category/terms?_jsonp=JSON_CALLBACK';
+            var categoryApi = WORDPRESS_API_URL + "get_category_index/?callback=JSON_CALLBACK";
 
             $http.jsonp(categoryApi).
-                    success(function (data, status, headers, config) {
-                        $scope.categories = data;
+                    success(function (data) {
+                        $scope.categories = data.categories;
                     }).
-                    error(function (data, status, headers, config) {
+                    error(function () {
                         console.log('Category load error.');
                     });
         })
 
-        .controller('TagsCtrl', function ($scope, $http, WORDPRESS_JSON_API_URL) {
+        .controller('TagsCtrl', function ($scope, $http, WORDPRESS_API_URL) {
             // Get tags
-            var tagsApi = WORDPRESS_JSON_API_URL + 'taxonomies/post_tag/terms?_jsonp=JSON_CALLBACK';
+            var tagsApi = WORDPRESS_API_URL + 'get_tag_index/?callback=JSON_CALLBACK';
 
             $http.jsonp(tagsApi).
-                    success(function (data, status, headers, config) {
-                        $scope.tags = data;
+                    success(function (data) {
+                        $scope.tags = data.tags;
                     }).
-                    error(function (data, status, headers, config) {
+                    error(function () {
                         console.log('Tags load error.');
-                    });
-        })
-
-        .controller('AuthorsCtrl', function ($scope, $http, WORDPRESS_JSON_API_URL) {
-            // Get authors
-            var authorsApi = WORDPRESS_JSON_API_URL + 'users?_jsonp=JSON_CALLBACK';
-
-            $http.jsonp(authorsApi).
-                    success(function (data, status, headers, config) {
-                        $scope.authors = data;
-                    }).
-                    error(function (data, status, headers, config) {
-                        console.log('Authors load error.');
                     });
         })
 
@@ -274,32 +254,6 @@ angular.module('starter.controllers', [])
                             console.log('Search results error.');
                         });
             }
-        })
-
-        .controller('ProfileCtrl', function ($scope, $state, $ionicLoading, AccessService) {
-            $scope.user = {};
-            var userData = AccessService.getUser();
-
-            $scope.user = {
-                userName: userData.data.nickname,
-                email: userData.data.email,
-                displayName: userData.data.displayname
-            };
-            $scope.doRegister = function() {
-                $ionicLoading.show({
-                    template: "Updating user..."
-                });
-                var s = {
-                    password: $scope.user.password,
-                    email: $scope.user.email,
-                    displayName: $scope.user.displayName
-                };
-                AccessService.doRegister(s).then(function() {
-                    $state.go("app.home"), $ionicLoading.hide();
-                }, function(n) {
-                    $scope.error = n, $ionicLoading.hide();
-                });
-            };
         })
 
         .controller('OfflineCtrl', function ($scope, $state, ConnectivityMonitor) {

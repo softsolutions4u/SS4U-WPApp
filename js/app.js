@@ -144,19 +144,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             auth: 1
                         }
                     })
-                    // not yet implemented
-                    .state('app.profile', {
-                        url: "/profile",
-                        views: {
-                            menuContent: {
-                                templateUrl: "templates/profile.html",
-                                controller: 'ProfileCtrl'
-                            }
-                        },
-                        data: {
-                            auth: 1
-                        }
-                    })
 
                     .state('app.tags', {
                         url: "/tags",
@@ -173,32 +160,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
 
                     .state('app.tag', {
                         url: "/tags/:tagName",
-                        views: {
-                            menuContent: {
-                                templateUrl: "templates/posts.html",
-                                controller: 'PostsCtrl'
-                            }
-                        },
-                        data: {
-                            auth: 1
-                        }
-                    })
-
-                    .state('app.authors', {
-                        url: "/authors",
-                        views: {
-                            menuContent: {
-                                templateUrl: "templates/authors.html",
-                                controller: 'AuthorsCtrl'
-                            }
-                        },
-                        data: {
-                            auth: 1
-                        }
-                    })
-
-                    .state('app.author', {
-                        url: "/authors/:authorId",
                         views: {
                             menuContent: {
                                 templateUrl: "templates/posts.html",

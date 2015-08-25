@@ -27,10 +27,10 @@
         </div>
         <div class="comments">
             <div class="list">
-                <a class="item item-avatar" ng-repeat="comment in comments" href="#" ng-class="{highlighted: comment.ID === new_comment_id}">
+                <a class="item item-avatar" ng-repeat="comment in comments" href="#" ng-class="{highlighted: comment.id === new_comment_id}">
                     <img ng-src="{{comment.user_gravatar}}">
-                    <h2  ng-bind-html="comment.author.name"><span class="comment-date" am-time-ago="comment.date"></span></h2>
-                    <p class="message-content" ng-bind-html="comment.content"></p>
+                    <h2 ng-bind-html="comment.author.name"><span class="comment-date" ng-bind-html="comment.date | parseDate | amTimeAgo"></span></h2>
+                    <p class="message-content" ng-bind-html="comment.content | rawHtml"></p>
                 </a>
             </div>
         </div>
