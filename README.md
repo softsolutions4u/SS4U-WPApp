@@ -1,7 +1,7 @@
 SS4U-WPApp
 ==========
 
-Ionic app for wordpress
+Ionic app for wordpress blog
 
 How to use this app
 -------------------
@@ -35,4 +35,3 @@ Wordpress setup
 Install latest wordpress in your server and install the following plugins,
 * [JSON API](https://wordpress.org/plugins/json-api/)
 * [JSON API User](https://wordpress.org/plugins/json-api-user/). After installing it should enabled in wordpress settings.
-* [WP REST API (WP API)](https://wordpress.org/plugins/json-rest-api/) Note: This might be confilict with json api plugin.We have planned to remove it in future.

@@ -126,13 +126,10 @@ angular.module('starter.controllers', [])
             };
             
             if ($stateParams.categoryId) {
-                filters.push('filter[cat]='+ $stateParams.categoryId);
+                filters.push('cat='+ $stateParams.categoryId);
             }
             if ($stateParams.tagName) {
-                filters.push('filter[tag]='+ $stateParams.tagName);
-            }
-            if ($stateParams.authorId) {
-                filters.push('filter[author]='+ $stateParams.authorId);
+                filters.push('tag='+ $stateParams.tagName);
             }
 
             $scope.doRefresh();        
@@ -194,7 +191,7 @@ angular.module('starter.controllers', [])
             };
             PostService.getPost($stateParams.postId)
                 .then(function (data) {
-                    if ("ok" == n.status) {
+                    if ("ok" === data.status) {
                         $scope.post = data.post;
                         $scope.comments = _.map($scope.post.comments, function(comment) {
                             return comment.author ? (PostService.getUserGravatar(comment.author.id).then(function(n) {
@@ -242,15 +239,17 @@ angular.module('starter.controllers', [])
                     });
         })
 
-        .controller('SearchCtrl', function ($scope, $http, WORDPRESS_JSON_API_URL) {
+        .controller('SearchCtrl', function ($scope, $http, WORDPRESS_API_URL) {
             $scope.formData = {};
             $scope.getResults = function () {
-                var searchApi = WORDPRESS_JSON_API_URL + 'posts?filter[s]=' + $scope.formData.term + '&_jsonp=JSON_CALLBACK';
+                var searchApi = WORDPRESS_API_URL + 'get_search_results?search=' + $scope.formData.term + '&callback=JSON_CALLBACK';
                 $http.jsonp(searchApi).
-                        success(function (data, status, headers, config) {
-                            $scope.posts = data;
+                        success(function (data) {
+                            if ("ok" === data.status) {
+                                $scope.posts = data.posts;
+                            }
                         }).
-                        error(function (data, status, headers, config) {
+                        error(function () {
                             console.log('Search results error.');
                         });
             }
