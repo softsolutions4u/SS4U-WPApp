@@ -208,6 +208,18 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         data: {
                             auth: 1
                         }
+                    })
+                    .state('app.settings', {
+                        url: "/settings",
+                        views: {
+                            menuContent: {
+                                templateUrl: "templates/settings.html",
+                                controller: 'SettingsCtrl'
+                            }
+                        },
+                        data: {
+                            auth: 1
+                        }
                     });
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('/app/home');

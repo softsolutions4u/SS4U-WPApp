@@ -41,4 +41,35 @@ angular.module("starter.directives", [])
                         }, 1000);
                     }
                 };
-            }]);
+            }])
+        .directive("stopImageClickEvent", function ($timeout) {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attr) {
+                    $timeout(function () {
+                        var elem = element.prop("tagName") === 'IMG' ? element : element.find('img');
+                        if (elem.length !== 0) {
+                            elem.bind('click', function (e) {
+                                e.preventDefault();
+                            });
+                        }
+                    }, 1000);
+                }
+            };
+        })
+        .directive("replaceProfileImageSrc", function($timeout) {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attr) {
+                    $timeout(function () {
+                        var elemSrc = element.prop("tagName") === 'IMG' ? element.attr("src") : '';
+                        if (elemSrc.length > 0) {
+                            if (elemSrc.indexOf('http') !== 0) {
+                                element.attr("src", elemSrc.replace(elemSrc.slice(0, elemSrc.indexOf('.')), 'http://www'));
+                            }
+                        }
+                    }, 1000);
+                }
+            };
+        });
+        

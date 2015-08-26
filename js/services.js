@@ -164,4 +164,30 @@ angular.module("starter.services", [])
                     return post;
                 });
             };
+        })
+        .service('BookmarkService', function($localStorage, $ionicLoading) {
+            this.isBookmarked = function(postId) {
+                $localStorage.$default({bookmarks: {id:[], data: []}});
+                var bookmarks = $localStorage.bookmarks;
+                var index = bookmarks.id.indexOf(parseInt(postId));
+                return index !== -1;
+            };
+            
+            this.addBookmark = function(postId, title, date) {
+                $localStorage.$default({bookmarks: {id:[], data: []}});
+                var bookmarks = $localStorage.bookmarks;
+                var postId = parseInt(postId);
+                var index = bookmarks.id.indexOf(postId);
+                if (index === -1) {
+                    bookmarks.data.push({id: postId, title: title, date: date});
+                    bookmarks.id.push(postId);
+                } else {
+                    bookmarks.data.splice(index,1);
+                    bookmarks.id.splice(index,1);
+                }
+                $ionicLoading.show({
+                    template: 'Bookmark updated',
+                    duration: 1000
+                });
+            };
         });

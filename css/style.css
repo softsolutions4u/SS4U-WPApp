@@ -77,7 +77,7 @@ body {
     text-shadow: 0 1px 0 #000;
     color: #fff;
     font-weight: 800;
-    font-family: "OpenSans", sans-serif;
+    font-family: sans-serif;
 }
 
 .bottom-content {
@@ -99,7 +99,7 @@ body {
 }
 
 .bottom-content .button{
-    font-family: "OpenSans", sans-serif;
+    font-family: sans-serif;
     font-size: 24px;
     font-style: italic;
     font-weight: 600;
@@ -150,7 +150,7 @@ body {
 
 .form-wrapper .header-wrapper .login-button, .register-account .login-button {
     font-size: 16px;
-    font-family: "OpenSans", sans-serif;
+    font-family: sans-serif;
     font-style: italic;
     font-weight: 600;
     padding: 0;
@@ -427,6 +427,10 @@ body {
 }
 .recent-posts .share-post-item span i.icon {
     font-size: 27px;
+    color: #999;
+}
+.recent-posts .share-post-item span i.icon.active {
+    font-size: 27px;
     color: #2D2F35;
 }
 .recent-posts .share-post-item a {
@@ -498,6 +502,12 @@ body {
 .post-detail-view .post-item-share span {
     width: 50%;
     line-height: 15px;
+}
+.post-detail-view .post-item-share a.bookmark i.icon{
+    color: #999;
+}
+.post-detail-view .post-item-share a.bookmark i.icon.active{
+    color: #fff;
 }
 .post-detail-view .post-item-share span a {
     color: #fff;
@@ -611,42 +621,4 @@ body {
     height: 100%;
     text-align: center;
     top: 50%;
-}
-
-
-/* Fonts */
-
-@font-face {
-    font-family: 'OpenSans';
-    src: url('../fonts/OpenSans.ttf') format('truetype'),
-         url("../fonts/OpenSans.eot") format("eot"),
-         url("../fonts/OpenSans.woff") format("woff"),
-         url("../fonts/OpenSans.svg") format("svg");
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: 'OpenSans';
-    src: url('../fonts/OpenSans-Extrabold.ttf') format('truetype'),
-         url("../fonts/OpenSans-Extrabold.eot") format("eot"),
-         url("../fonts/OpenSans-Extrabold.woff") format("woff"),
-         url("../fonts/OpenSans-Extrabold.svg") format("svg");
-    font-weight: 800;
-}
-@font-face {
-    font-family: 'OpenSans';
-    src: url('../fonts/OpenSans-Semibold.ttf') format('truetype'),
-         url("../fonts/OpenSans-Semibold.eot") format("eot"),
-         url("../fonts/OpenSans-Semibold.woff") format("woff"),
-         url("../fonts/OpenSans-Semibold.svg") format("svg");
-    font-weight: 600;
-}
-@font-face {
-    font-family: 'OpenSans';
-    src: url('../fonts/OpenSans-SemiboldItalic.ttf') format('truetype'),
-         url("../fonts/OpenSans-SemiboldItalic.eot") format("eot"),
-         url("../fonts/OpenSans-SemiboldItalic.woff") format("woff"),
-         url("../fonts/OpenSans-SemiboldItalic.svg") format("svg");
-    font-weight: 600;
-    font-style: italic;
 }

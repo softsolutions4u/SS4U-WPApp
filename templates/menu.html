@@ -21,7 +21,7 @@
             <ion-list>
                 <ion-item class="profile-heading-item item " nav-clear menu-close ui-sref="#">
                     <span class="image-border">
-                      <img ng-src="{{user.avatar}}">
+                      <img ng-src="{{user.avatar}}" replace-profile-image-src>
                     </span>
                     <span class="heading-action">
                       <h2 class="greeting">
@@ -58,6 +58,10 @@
                 <ion-item class="item-icon-left menu-items" menu-close ui-sref="app.bookmarks">
                   <span class="menu-icon-border"><i class="icon ion-bookmark"></i></span>
                   <span class="menu-title">Bookmarks</span>
+                </ion-item>
+                <ion-item class="item-icon-left menu-items" menu-close ui-sref="app.settings">
+                  <span class="menu-icon-border"><i class="icon ion-gear-b"></i></span>
+                  <span class="menu-title">Settings</span>
                 </ion-item>
                 <ion-item class="item-icon-left menu-items last-item" menu-close ng-href="#" ng-click="showLogOutMenu()">
                   <span class="menu-icon-border"><i class="icon ion-power"></i></span>

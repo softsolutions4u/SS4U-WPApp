@@ -87,7 +87,7 @@ angular.module('starter.controllers', [])
             
         })
 
-        .controller('PostsCtrl', function ($scope, $stateParams, $cordovaSocialSharing, $localStorage, $ionicLoading, PostService) {
+        .controller('PostsCtrl', function ($scope, $stateParams, $cordovaSocialSharing, $ionicLoading, PostService, BookmarkService) {
             var filters = [];
             $scope.posts = [];
             $scope.page  = 1;
@@ -139,27 +139,17 @@ angular.module('starter.controllers', [])
                 return $scope.pagesCount > $scope.page;
             };
 
-            $scope.addBookmark = function(postId, title, date) {
-                $localStorage.$default({bookmarks: {id:[], data: []}});
-                var bookmarks = $localStorage.bookmarks;
-                var index = bookmarks.id.indexOf(postId);
-                if (index === -1) {
-                    bookmarks.data.push({id: postId, title: title, date: date});
-                    bookmarks.id.push(postId);
-                } else {
-                    bookmarks.data.splice(index,1);
-                    bookmarks.id.splice(index,1);
-                }
-                $ionicLoading.show({
-                    template: 'Bookmark saved',
-                    duration: 1000
-                });
+            $scope.addBookmark = function (postId, title, date) {
+                BookmarkService.addBookmark(postId, title, date);
             };
 
+            $scope.isBookmarked = function (postId) {
+                return BookmarkService.isBookmarked(postId);
+            };
             $scope.doRefresh();
         })
 
-        .controller('PostCtrl', function ($scope, $stateParams, $sce, $ionicLoading, $cordovaSocialSharing, PostService, AccessService, $ionicScrollDelegate) {
+        .controller('PostCtrl', function ($scope, $stateParams, $sce, $ionicLoading, $cordovaSocialSharing, PostService, AccessService, $ionicScrollDelegate, BookmarkService) {
             $scope.minFontSize   = 12;
             $scope.maxFontSize   = 30;
             $scope.fontSizeSteps = 2;
@@ -235,6 +225,14 @@ angular.module('starter.controllers', [])
                         duration: 3000
                     });
                 });
+                
+            $scope.addBookmark = function () {
+                BookmarkService.addBookmark($scope.post.id, $scope.post.title, $scope.post.date);
+            };
+
+            $scope.isBookmarked = function () {
+                return $scope.post ? BookmarkService.isBookmarked($scope.post.id) : false;
+            };
         })
 
         .controller('CategoryCtrl', function ($scope, $http, WORDPRESS_API_URL) {
@@ -290,4 +288,8 @@ angular.module('starter.controllers', [])
         .controller('BookmarkCtrl', function ($scope, $localStorage) {
             $localStorage.$default({bookmarks: {id:[], data: []}});
             $scope.posts = $localStorage.bookmarks.data;
+        })
+        
+        .controller('SettingsCtrl', function ($scope, $rootScope, $localStorage) {
+            $scope.notifications = !0;
         });

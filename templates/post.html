@@ -12,12 +12,15 @@
 
             <div class="item post-item-share">
               <span class="align-left">
+                <a ng-href="#" ng-click="addBookmark()" class="bookmark">
+                  <i class="icon ion-bookmark" ng-class="{'active': isBookmarked() == true}"></i>
+                </a>
                 <a ng-href="#" ng-click="increase()">A+</a>
                 <a ng-href="#" ng-click="decrease()">A-</a>
               </span>
               <span class="align-right social-icons">
                 <a class="fblike" ng-click="">
-                    <i class="fa fa-thumbs-o-up"></i>
+                    <i class="icon ion-thumbsup"></i>
                 </a>
                 <a class="social-share" ng-click="shareAnywhere()" ng-href="#">
                     <i class="icon ion-android-share-alt"></i>
