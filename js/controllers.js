@@ -89,15 +89,30 @@ angular.module('starter.controllers', [])
 
         .controller('PostsCtrl', function ($scope, $stateParams, $cordovaSocialSharing, $localStorage, $ionicLoading, PostService) {
             var filters = [];
-            
+            $scope.posts = [];
+            $scope.page  = 1;
+            $scope.pagesCount = 1;
+            $scope.isLoading = false;
+
+            if ($stateParams.categoryId) {
+                filters.push('cat='+ $stateParams.categoryId);
+            }
+            if ($stateParams.tagName) {
+                filters.push('tag='+ $stateParams.tagName);
+            }
+
             $scope.doRefresh = function() {
+                $scope.isLoading = true;
                 $ionicLoading.show({
                     template: 'Loading posts'
                 });
-                PostService.getPosts(filters)
+                PostService.getPosts(filters, 1)
                     .then(function (res) {
-                        var shortenPosts = PostService.shortenPosts(res.posts);                        
-                        $scope.posts = shortenPosts;
+                        $scope.pagesCount = res.pages;
+
+                        var shortenPosts  = PostService.shortenPosts(res.posts);
+                        $scope.posts      = shortenPosts;
+                        $scope.isLoading  = false;
                         $ionicLoading.hide();
                         $scope.$broadcast('scroll.refreshComplete');
                     }, function(e) {
@@ -107,7 +122,23 @@ angular.module('starter.controllers', [])
                         });
                     });
               };
-            
+
+            $scope.loadMorePosts = function() {
+                $scope.page += 1;
+                PostService.getPosts(filters, $scope.page)
+                    .then(function(data) {
+                        $scope.pagesCount = data.pages;
+
+                        var posts    = PostService.shortenPosts(data.posts);
+                        $scope.posts = $scope.posts.concat(posts);
+                        $scope.$broadcast("scroll.infiniteScrollComplete");
+                    });
+            };
+
+            $scope.moreDataCanBeLoaded = function() {
+                return $scope.pagesCount > $scope.page;
+            };
+
             $scope.addBookmark = function(postId, title, date) {
                 $localStorage.$default({bookmarks: {id:[], data: []}});
                 var bookmarks = $localStorage.bookmarks;
@@ -124,15 +155,8 @@ angular.module('starter.controllers', [])
                     duration: 1000
                 });
             };
-            
-            if ($stateParams.categoryId) {
-                filters.push('cat='+ $stateParams.categoryId);
-            }
-            if ($stateParams.tagName) {
-                filters.push('tag='+ $stateParams.tagName);
-            }
 
-            $scope.doRefresh();        
+            $scope.doRefresh();
         })
 
         .controller('PostCtrl', function ($scope, $stateParams, $sce, $ionicLoading, $cordovaSocialSharing, PostService, AccessService, $ionicScrollDelegate) {

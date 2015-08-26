@@ -19,10 +19,14 @@
             </div>
 
         </div>
-        <div ng-show="posts && posts.length == 0" class="card">
+        <div ng-show="!isLoading && posts && posts.length == 0" class="card">
             <div class="item item-text-wrap">
                 No posts found!
             </div>
-        </div>        
+        </div>
+
+        <!-- Infinite scroll -->
+        <ion-infinite-scroll ng-if="moreDataCanBeLoaded()" on-infinite="loadMorePosts()" distance="1%" icon="ion-loading-c">
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>

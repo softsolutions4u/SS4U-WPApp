@@ -111,7 +111,7 @@ angular.module("starter.services", [])
             };
         }])
         .service("PostService", function($http, $q, WORDPRESS_API_URL, AccessService){
-            this.getPosts = function(filters) {
+            this.getPosts = function(filters, pageId) {
                 var filterQuery = '',
                     postsApi,
                     defer = $q.defer();
@@ -119,7 +119,7 @@ angular.module("starter.services", [])
                 if (filters.length) {
                     filterQuery = '&' + filters.join('&');
                 }
-                postsApi = WORDPRESS_API_URL + 'get_recent_posts/?callback=JSON_CALLBACK'+ filterQuery;
+                postsApi = WORDPRESS_API_URL + 'get_recent_posts/?page=' + pageId + '&callback=JSON_CALLBACK'+ filterQuery;
                 return $http.jsonp(postsApi).success(function(e) {
                     defer.resolve(e);
                 }).error(function(e) {
