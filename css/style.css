@@ -55,7 +55,7 @@ body {
 }
 
 .app_bg {
-    background: url('../img/body-bg.png') no-repeat;
+    background: url('../img/body-bg.jpg') no-repeat;
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -228,7 +228,7 @@ body {
 
 /* Start Home */
 .main-menu-bg {
-    background: url('../img/main_menu_bg.png') no-repeat;
+    background: url('../img/main_menu_bg.jpg') no-repeat;
     background-size: cover;
     width: 100%;
     height: 100%;
