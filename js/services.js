@@ -190,4 +190,5 @@ angular.module("starter.services", [])
                     duration: 1000
                 });
             };
-        });
+        })
+        .service('PushNotification', function() {});
