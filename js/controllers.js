@@ -97,10 +97,7 @@ angular.module('starter.controllers', [])
             if ($stateParams.categoryId) {
                 filters.push('cat='+ $stateParams.categoryId);
             }
-            if ($stateParams.tagName) {
-                filters.push('tag='+ $stateParams.tagName);
-            }
-
+            
             $scope.doRefresh = function() {
                 $scope.isLoading = true;
                 $ionicLoading.show({
@@ -248,19 +245,6 @@ angular.module('starter.controllers', [])
                     });
         })
 
-        .controller('TagsCtrl', function ($scope, $http, WORDPRESS_API_URL) {
-            // Get tags
-            var tagsApi = WORDPRESS_API_URL + 'get_tag_index/?callback=JSON_CALLBACK';
-
-            $http.jsonp(tagsApi).
-                    success(function (data) {
-                        $scope.tags = data.tags;
-                    }).
-                    error(function () {
-                        console.log('Tags load error.');
-                    });
-        })
-
         .controller('SearchCtrl', function ($scope, $http, WORDPRESS_API_URL) {
             $scope.formData = {};
             $scope.getResults = function () {
@@ -288,8 +272,4 @@ angular.module('starter.controllers', [])
         .controller('BookmarkCtrl', function ($scope, $localStorage) {
             $localStorage.$default({bookmarks: {id:[], data: []}});
             $scope.posts = $localStorage.bookmarks.data;
-        })
-        
-        .controller('SettingsCtrl', function ($scope, $rootScope, $localStorage) {
-            $scope.notifications = !0;
         });

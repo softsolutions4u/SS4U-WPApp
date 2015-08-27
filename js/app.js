@@ -144,33 +144,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             auth: 1
                         }
                     })
-
-                    .state('app.tags', {
-                        url: "/tags",
-                        views: {
-                            menuContent: {
-                                templateUrl: "templates/tags.html",
-                                controller: 'TagsCtrl'
-                            }
-                        },
-                        data: {
-                            auth: 1
-                        }
-                    })
-
-                    .state('app.tag', {
-                        url: "/tags/:tagName",
-                        views: {
-                            menuContent: {
-                                templateUrl: "templates/posts.html",
-                                controller: 'PostsCtrl'
-                            }
-                        },
-                        data: {
-                            auth: 1
-                        }
-                    })
-
                     .state('app.posts', {
                         url: "/posts",
                         views: {
@@ -203,18 +176,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             menuContent: {
                                 templateUrl: "templates/bookmarks.html",
                                 controller: 'BookmarkCtrl'
-                            }
-                        },
-                        data: {
-                            auth: 1
-                        }
-                    })
-                    .state('app.settings', {
-                        url: "/settings",
-                        views: {
-                            menuContent: {
-                                templateUrl: "templates/settings.html",
-                                controller: 'SettingsCtrl'
                             }
                         },
                         data: {
