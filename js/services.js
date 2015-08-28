@@ -154,7 +154,7 @@ angular.module("starter.services", [])
                 }), s.promise;
             };
             this.shortenPosts = function(posts) {
-                var wordCount = 500;
+                var wordCount = 1000;
                 return _.map(posts, function(post) {
                     if (post.content.length > wordCount) {
                         var content = post.content.substr(0, wordCount);
