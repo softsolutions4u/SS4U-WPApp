@@ -68,7 +68,7 @@ angular.module("starter.directives", [])
                                 element.attr("src", elemSrc.replace(elemSrc.slice(0, elemSrc.indexOf('.')), 'http://www'));
                             }
                         }
-                    }, 1000);
+                    }, 2000);
                 }
             };
         });
