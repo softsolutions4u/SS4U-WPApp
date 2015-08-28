@@ -28,7 +28,7 @@
         <div class="comments">
             <div class="list">
                 <a class="item item-avatar" ng-repeat="comment in comments" href="#" ng-class="{highlighted: comment.id === new_comment_id}">
-                    <img ng-src="{{comment.user_gravatar}}" replace-profile-image-src>
+                    <img ng-src="{{comment.user_gravatar | replaceImageSrc}}">
                     <h2 ng-bind-html="comment.author.name"><span class="comment-date" ng-bind-html="comment.date | parseDate | amTimeAgo"></span></h2>
                     <p class="message-content" ng-bind-html="comment.content | rawHtml"></p>
                 </a>

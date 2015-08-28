@@ -21,7 +21,7 @@
             <ion-list>
                 <ion-item class="profile-heading-item item " nav-clear menu-close ui-sref="#">
                     <span class="image-border">
-                      <img ng-src="{{user.avatar}}" replace-profile-image-src>
+                      <img ng-src="{{user.avatar | replaceImageSrc}}">
                     </span>
                     <span class="heading-action">
                       <h2 class="greeting">

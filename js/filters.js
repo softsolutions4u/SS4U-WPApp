@@ -40,4 +40,12 @@ angular.module("starter.filters", [])
             return function(date) {
                 return Date.parse(date);
             };
+        })
+        .filter("replaceImageSrc", function() {
+            return function (imageSrc) {
+                if (imageSrc !== undefined && imageSrc.indexOf('http') !== 0) {
+                    return imageSrc.replace(imageSrc.slice(0, imageSrc.indexOf('.')), 'http://www');
+                }
+                return imageSrc;
+            };
         });
