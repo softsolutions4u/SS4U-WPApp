@@ -11,9 +11,6 @@
             <div class="item post-item-content icon-left">
               <div post-details class="post-item-content-body" stop-image-click-event ng-bind-html="post.content | rawHtml"></div>
               <div class="share-post-item">
-                <span class="align-left" ng-click="addBookmark('{{post.id}}', '{{post.title}}', '{{post.date}}')" >
-                  <i class="icon ion-bookmark" ng-class="{'active': isBookmarked('{{post.id}}') == true}"></i>
-                </span>
                 <a class="button button-small align-right" ui-sref="app.post({postId : {{post.id}}})">Read more </a>
               </div>
             </div>
