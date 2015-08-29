@@ -50,7 +50,7 @@ angular.module('starter.controllers', [])
                 $ionicLoading.show({
                     template: "Recovering password..."
                 });
-                AccessService.forgotPassword($scope.user.userName)
+                AccessService.forgotPassword($scope.user.email)
                         .then(function(n) {
                             $scope.error = '';
                             $scope.message = '';
