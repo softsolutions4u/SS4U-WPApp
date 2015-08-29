@@ -174,9 +174,6 @@ angular.module("starter.services", [])
             };
             
             this.addBookmark = function(postId, title, date) {
-                $ionicLoading.show({
-                    template: 'Loading'
-                });
                 $localStorage.$default({bookmarks: {id:[], data: []}});
                 var bookmarks = $localStorage.bookmarks;
                 var postId = parseInt(postId);
@@ -184,14 +181,12 @@ angular.module("starter.services", [])
                 if (index === -1) {
                     bookmarks.data.push({id: postId, title: title, date: date});
                     bookmarks.id.push(postId);
-                    bookmarkStatus = 'Bookmarked';
                 } else {
                     bookmarks.data.splice(index,1);
                     bookmarks.id.splice(index,1);
-                    bookmarkStatus = 'Unbookmarked'
                 }
                 $ionicLoading.show({
-                    template: bookmarkStatus,
+                    template: 'Bookmark updated',
                     duration: 1000
                 });
             };
