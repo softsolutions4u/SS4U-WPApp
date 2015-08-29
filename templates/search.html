@@ -24,7 +24,12 @@
                     <i class="icon ion-arrow-right-c"></i>
                 </a>
             </div>
-
+          
+          <div ng-show="posts && posts.length == 0" class="card">
+            <div class="item item-text-wrap">
+                No results found!
+            </div>
+        </div>
         </div>
     </ion-content>
 </ion-view>

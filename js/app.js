@@ -69,6 +69,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         url: "/login",
                         templateUrl: "templates/login.html",
                         controller: 'LoginCtrl',
+                        cache: false,
                         data: {
                             auth: 0
                         }
