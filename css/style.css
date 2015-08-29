@@ -508,6 +508,7 @@ body {
 }
 .post-detail-view .post-item-share a.bookmark i.icon{
     color: #999;
+    font-size: 16px;
 }
 .post-detail-view .post-item-share a.bookmark i.icon.active{
     color: #fff;

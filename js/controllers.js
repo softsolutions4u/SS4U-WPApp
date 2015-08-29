@@ -87,7 +87,7 @@ angular.module('starter.controllers', [])
             
         })
 
-        .controller('PostsCtrl', function ($scope, $stateParams, $cordovaSocialSharing, $ionicLoading, PostService, BookmarkService) {
+        .controller('PostsCtrl', function ($scope, $stateParams, $cordovaSocialSharing, $ionicLoading, PostService) {
             var filters = [];
             $scope.posts = [];
             $scope.page  = 1;
@@ -136,13 +136,6 @@ angular.module('starter.controllers', [])
                 return $scope.pagesCount > $scope.page;
             };
 
-            $scope.addBookmark = function (postId, title, date) {
-                BookmarkService.addBookmark(postId, title, date);
-            };
-
-            $scope.isBookmarked = function (postId) {
-                return BookmarkService.isBookmarked(postId);
-            };
             $scope.doRefresh();
         })
 
