@@ -1,4 +1,4 @@
-<ion-view class="post-view post-detail-view main-menu-bg" view-title="{{post.title}}" >
+<ion-view class="post-view post-detail-view main-menu-bg" view-title="{{post.title}}" cache-view="false">
     <ion-content class="padding">
         <div class="list card">
             <div class="item post-item-title">
@@ -12,13 +12,13 @@
 
             <div class="item post-item-share">
               <span class="align-left">
+                <a ng-href="#" ng-click="increase()" class="increase">A+</a>
+                <a ng-href="#" ng-click="decrease()" class="decrease">A-</a>
+              </span>
+              <span class="align-right social-icons">
                 <a ng-href="#" ng-click="addBookmark()" class="bookmark">
                   <i class="icon ion-bookmark" ng-class="{'active': isBookmarked() == true}"></i>
                 </a>
-                <a ng-href="#" ng-click="increase()">A+</a>
-                <a ng-href="#" ng-click="decrease()">A-</a>
-              </span>
-              <span class="align-right social-icons">
                 <a class="social-share" ng-click="shareAnywhere()" ng-href="#">
                     <i class="icon ion-android-share-alt"></i>
                 </a>

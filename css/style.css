@@ -115,7 +115,9 @@ body {
   height: 100%;
   white-space: nowrap;
 }
- 
+.form-wrapper .header-wrapper {
+    white-space: normal;
+}
 .form-wrapper:before {
   content: '';
   display: inline-block;
@@ -518,6 +520,15 @@ body {
     padding-left: 15px;
     text-decoration: none;
     font-size: 14px;
+}
+.post-detail-view .post-item-share span a.increase {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.post-detail-view .post-item-share span a.decrease {
+    font-size: 12px;
+    font-weight: bold;
 }
 .post-detail-view .post-item-share span.social-icons{
     text-align: right;
