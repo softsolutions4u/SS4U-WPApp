@@ -5,6 +5,7 @@ angular.module("underscore", []).factory("_", function() {
 angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
         .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor) {
             $ionicPlatform.ready(function () {
+                //Start watching the network status
                 ConnectivityMonitor.startWatching();
                 AccessService.userIsLoggedIn().then(function(result) {
                     result === true ? $state.go("app.home") : $state.go("greet");
@@ -20,10 +21,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                 }
             });
             $rootScope.$on("$stateChangeStart", function(event, toState) {
+                //Check whether the network is online/offline mode
                 if (ConnectivityMonitor.ifOffline()) {
                     toState.name !== 'offline' ? $state.go("offline") : '';
                     return;
                 }
+                
+                //Check whether the user is logged in or not
                 AccessService.userIsLoggedIn().then(function(res) {
                     if ( toState.data.auth ) {
                         res === false && (event.preventDefault(), $state.go("greet"));
@@ -41,7 +45,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                     .state('greet', {
                         url: "/",
                         templateUrl: "templates/greet.html",
-                        controller: 'GreetCtrl',
                         data: {
                             auth: 0
                         }

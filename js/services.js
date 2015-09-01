@@ -188,7 +188,7 @@ angular.module("starter.services", [])
                 } else {
                     bookmarks.data.splice(index,1);
                     bookmarks.id.splice(index,1);
-                    bookmarkStatus = 'Unbookmarked'
+                    bookmarkStatus = 'Unbookmarked';
                 }
                 $ionicLoading.show({
                     template: bookmarkStatus,

@@ -1,11 +1,4 @@
 angular.module('starter.controllers', [])
-
-        .controller('GreetCtrl', function($scope, $ionicSlideBoxDelegate) {
-            $scope.$on("$ionicView.enter", function() {
-                $ionicSlideBoxDelegate.$getByHandle("greet-slider").update();
-            });
-        })
-        
         .controller('LoginCtrl', function($scope, $ionicLoading, AccessService, $state) {
             $scope.user = {};
             $scope.doLogin = function() {
@@ -159,7 +152,7 @@ angular.module('starter.controllers', [])
             };
             
             $scope.shareAnywhere = function() {
-                $cordovaSocialSharing.share($scope.post.title, $scope.post.title, $scope.post.content, $scope.post.link);
+                $cordovaSocialSharing.share($scope.post.content, $scope.post.title, null, $scope.post.url);
             };
             $ionicLoading.show({
                 template: 'Loading post'

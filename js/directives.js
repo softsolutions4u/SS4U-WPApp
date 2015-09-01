@@ -23,6 +23,7 @@ angular.module("starter.directives", [])
                     restrict: "A",
                     scope: {},
                     link: function (scope, el, attr) {
+                        //Check whether the given url is youtube video url
                         function isYoutubeUrl(url) {
                             var exp = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11,})(?:\S+)?$/gim;
                             return url.match(exp) ? RegExp.$1 : false;
