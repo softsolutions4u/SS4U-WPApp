@@ -3,7 +3,7 @@ angular.module("underscore", []).factory("_", function() {
     return window._
 }),
 angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
-        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor) {
+        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, PushNotificationService) {
             $ionicPlatform.ready(function () {
                 ConnectivityMonitor.startWatching();
                 AccessService.userIsLoggedIn().then(function(result) {
@@ -18,6 +18,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                     // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
+                PushNotificationService.register();
             });
             $rootScope.$on("$stateChangeStart", function(event, toState) {
                 if (ConnectivityMonitor.ifOffline()) {

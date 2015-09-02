@@ -191,4 +191,50 @@ angular.module("starter.services", [])
                 });
             };
         })
-        .service('PushNotification', function() {});
+
+        .service('PushNotificationService', ['$rootScope', '$cordovaPush', 'GCM_PROJECT_ID', '$cordovaToast', '$cordovaDialogs', 'WordpressPushService', function($rootScope, $cordovaPush, GCM_PROJECT_ID, $cordovaToast, $cordovaDialogs, WordpressPushService) {
+                this.register = function() {
+                    var config = null;
+                    if (ionic.Platform.isAndroid()) {
+                        config = {
+                            "senderID": GCM_PROJECT_ID
+                        };
+                    }
+
+                    if (config === null) {
+                        return;
+                    }
+                    $cordovaPush.register(config).then(function (result) {
+                        $cordovaToast.showShortCenter('Registered for push notifications');
+                    }, function (err) {
+                        $cordovaDialogs.alert("Register error " + err);
+                    });
+                };
+
+                // Notification Received
+                $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
+                    switch (notification.event) {
+                        case "registered":
+                            notification.regid.length > 0 && WordpressPushService.storeDeviceToken("android", notification.regid);
+                            break;
+                        case "message":
+                            console.log("message = " + notification);
+                            break;
+                        case "error":
+                            break;
+                    }
+                });
+        }])
+
+        .service('WordpressPushService', ['$http', 'WORDPRESS_PUSH_URL', '$cordovaDialogs', function($http, WORDPRESS_PUSH_URL, $cordovaDialogs) {
+            this.storeDeviceToken = function(platform, token) {
+                $http.get(WORDPRESS_PUSH_URL + token)
+                    .success(function (data, status) {
+                        $cordovaDialogs.alert("Token stored, device is successfully subscribed to receive push notifications.");
+                    })
+                    .error(function (data, status) {
+                        $cordovaDialogs.alert("Error storing device token." + data + " " + status);
+                    }
+                );
+            };
+        }]);
