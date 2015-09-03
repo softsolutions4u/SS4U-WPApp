@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
             $scope.user = {};
             $scope.doLogin = function() {
                 $ionicLoading.show({
-                    template: "Loging in..."
+                    template: "Logging in..."
                 });
                 var s = {
                     userName: $scope.user.userName,
@@ -152,7 +152,7 @@ angular.module('starter.controllers', [])
             };
             
             $scope.shareAnywhere = function() {
-                $cordovaSocialSharing.share($scope.post.content, $scope.post.title, null, $scope.post.url);
+                $cordovaSocialSharing.share($scope.post.title, $scope.post.title, null, $scope.post.url);
             };
             $ionicLoading.show({
                 template: 'Loading post'

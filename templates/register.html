@@ -9,18 +9,18 @@
               <form name="signup_form" novalidate>
                 <div class="list ">
                   <label class="item item-input">
-                    <input type="text" name="user_name" placeholder="Username" ng-model="user.userName" required>
+                    <input type="text" name="display_name" placeholder="Name" ng-model="user.displayName" required autocomplete="off">
                   </label>
                   <label class="item item-input">
-                    <input type="text" name="display_name" placeholder="Name" ng-model="user.displayName" required>
+                    <input type="text" name="user_name" placeholder="Username" ng-model="user.userName" required autocomplete="off">
                   </label>
                   <label class="item item-input">
-                    <input type="email" name="email" placeholder="Email" ng-model="user.email" required>
+                    <input type="email" name="email" placeholder="Email" ng-model="user.email" required autocomplete="off">
                   </label>
                   <label class="item item-input item-icon-right" show-hide-container>
                     <i class="icon ion-eye" on-touch="showPassword = !showPassword"></i>
-                    <input type="password" id="password" placeholder="Password" ng-model="user.password" ng-hide="showPassword" required>
-                    <input type="text" id="passwordRaw" placeholder="Password" ng-model="user.password" ng-show="showPassword" required>
+                    <input type="password" id="password" placeholder="Password" ng-model="user.password" ng-hide="showPassword" required autocomplete="off">
+                    <input type="text" id="passwordRaw" placeholder="Password" ng-model="user.password" ng-show="showPassword" required autocomplete="off">
                   </label>
                   <p ng-show="error" class="message error">{{error}}</p>
                   <p ng-show="message" class="message">{{message}}</p>

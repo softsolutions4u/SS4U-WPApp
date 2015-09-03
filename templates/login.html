@@ -13,8 +13,8 @@
                   </label>
                   <label class="item item-input item-icon-right" show-hide-container>
                     <i class="icon ion-eye" on-touch="showPassword = !showPassword"></i>
-                    <input type="password" id="password" placeholder="Password" ng-model="user.password" ng-hide="showPassword" required>
-                    <input type="text" id="passwordRaw" placeholder="Password" ng-model="user.password" ng-show="showPassword">
+                    <input type="password" id="password" placeholder="Password" ng-model="user.password" ng-hide="showPassword" required autocomplete="off">
+                    <input type="text" id="passwordRaw" placeholder="Password" ng-model="user.password" ng-show="showPassword" autocomplete="off">
                   </label>
                   <button type="submit" class="login-button button button-block button-assertive" ng-click="doLogin()" ng-disabled="login_form.$invalid">
                     Log in

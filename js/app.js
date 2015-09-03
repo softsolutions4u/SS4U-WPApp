@@ -63,6 +63,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         url: "/register",
                         templateUrl: "templates/register.html",
                         controller: "RegisterCtrl",
+                        cache: false,
                         data: {
                             auth: 0
                         }
