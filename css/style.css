@@ -107,6 +107,13 @@ body {
     font-style: italic;
     font-weight: 600;
 }
+
+.powered-by a {
+    text-decoration: none;
+}
+.powered-by, .powered-by a {
+    color: #FFF;    
+}
 /* ----------Greet View  End-----------*/
 
 /* Start Login , ForgotPassword And Registration  Page*/
