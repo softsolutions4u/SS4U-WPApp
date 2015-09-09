@@ -1,7 +1,16 @@
 angular.module("starter.services", [])
 
+        /**
+         * User authentication
+         * 
+         * @param {type} e  rootscope
+         * @param {type} n  Send http request and return response
+         * @param {type} t  Service which helps you run functions asynchronously
+         * @param {type} o  Wordpress API url
+         * @returns null
+         */
         .service("AccessService", ["$rootScope", "$http", "$q", "WORDPRESS_API_URL", function (e, n, t, o) {
-            
+            //Validate user authentication using  authentication cookie saved user mobile device
             this.validateAuth = function (e) {
                 var s = t.defer();
                 return n.jsonp(o + "user/validate_auth_cookie/?cookie=" + e.cookie + "&callback=JSON_CALLBACK").success(function (e) {
@@ -9,7 +18,9 @@ angular.module("starter.services", [])
                 }).error(function (e) {
                     s.reject(e);
                 }), s.promise;
-            }, this.doLogin = function (e) {
+            }, 
+            //User login authentication credentials
+            this.doLogin = function (e) {
                 var n = t.defer(),
                     o = t.defer(),
                     s = this;
@@ -37,7 +48,9 @@ angular.module("starter.services", [])
                         n.reject('Error occured. try after sometime');
                     });
                 }), n.promise;
-            }, this.doRegister = function (e) {
+            },
+            //Create a user with given credentials
+            this.doRegister = function (e) {
                 var n = t.defer(),
                         o = t.defer(),
                         s = this;
@@ -54,21 +67,27 @@ angular.module("starter.services", [])
                         n.reject('Error occured. try after sometime');
                     });
                 }), n.promise;
-            }, this.requestNonce = function (e, s) {
+            },
+            //Generate a token for make a request in WordPress
+            this.requestNonce = function (e, s) {
                 var i = t.defer();
                 return n.jsonp(o + "get_nonce/?controller=" + e + "&method=" + s + "&callback=JSON_CALLBACK").success(function (e) {
                     i.resolve(e.nonce);
                 }).error(function (e) {
                     i.reject(e);
                 }), i.promise;
-            }, this.forgotPassword = function (e) {
+            },
+            //Send a forgot/reset password request with given email
+            this.forgotPassword = function (e) {
                 var s = t.defer();
                 return n.jsonp(o + "user/retrieve_password/?user_login=" + e + "&callback=JSON_CALLBACK").success(function (e) {
                     s.resolve(e);
                 }).error(function (e) {
                     s.reject(e);
                 }), s.promise;
-            }, this.generateAuthCookie = function (e, s, i) {
+            }, 
+            //Generate authentication cookie using username, password, nounce
+            this.generateAuthCookie = function (e, s, i) {
                 var a = t.defer();
                 return n.jsonp(o + "user/generate_auth_cookie/?username=" + e + "&password=" + s + "&nonce=" + i + "&callback=JSON_CALLBACK").success(function (e) {
                     a.resolve(e);
@@ -110,7 +129,18 @@ angular.module("starter.services", [])
                 }), e.promise;
             };
         }])
+         
+         /**
+          * Post service that performs get posts, submit comment, user avatar, shorten posts
+          * 
+          * @param {type} $http             Send http request and receive return response
+          * @param {type} $q                Service which helps you run functions asynchronously
+          * @param {type} WORDPRESS_API_URL Wordpress API url
+          * @param {type} AccessService     Access service for authentications
+          * @returns null
+          */
         .service("PostService", function($http, $q, WORDPRESS_API_URL, AccessService){
+            //Get all the posts from WordPress API url
             this.getPosts = function(filters, pageId) {
                 var filterQuery = '',
                     postsApi,
@@ -126,6 +156,8 @@ angular.module("starter.services", [])
                     defer.reject(e);
                 }), defer.promise;
             };
+            
+            //Get the post from WordPress API url by using postId
             this.getPost = function(postId) {
                 var postApi,
                     defer = $q.defer();
@@ -136,6 +168,8 @@ angular.module("starter.services", [])
                     defer.reject(e);
                 }), defer.promise;
             };
+            
+            //Submit a comment for post
             this.submitComment = function(postId, content) {
                 var a = $q.defer(),
                     r = AccessService.getUser();
@@ -145,6 +179,8 @@ angular.module("starter.services", [])
                     a.reject(e);
                 }), a.promise;
             };
+            
+            //Get the user profile picture
             this.getUserGravatar = function(userId) {
                 var s = $q.defer();
                 return $http.jsonp(WORDPRESS_API_URL + "user/get_avatar/?user_id=" + userId + "&type=full&callback=JSON_CALLBACK").success(function(e) {
@@ -153,6 +189,8 @@ angular.module("starter.services", [])
                     s.reject(e);
                 }), s.promise;
             };
+            
+            //Make a post content to shortens posts
             this.shortenPosts = function(posts) {
                 var wordCount = 1000;
                 return _.map(posts, function(post) {
@@ -165,7 +203,17 @@ angular.module("starter.services", [])
                 });
             };
         })
+        
+        /**
+         * Add/Remove Bookmark post
+         * 
+         * @param {type} $localStorage  local storage
+         * @param {type} $ionicLoading  'Loading' image / text
+         * @returns {undefined}
+         */
         .service('BookmarkService', function($localStorage, $ionicLoading) {
+            
+            //Check if the 'post' is Bookmarked or not
             this.isBookmarked = function(postId) {
                 $localStorage.$default({bookmarks: {id:[], data: []}});
                 var bookmarks = $localStorage.bookmarks;
@@ -173,23 +221,28 @@ angular.module("starter.services", [])
                 return index !== -1;
             };
             
+            //Add / remove the Bookmark of the post
             this.addBookmark = function(postId, title, date) {
                 $ionicLoading.show({
                     template: 'Loading...'
                 });
+                //Initialize Bookmarks to save in local storage of the device
                 $localStorage.$default({bookmarks: {id:[], data: []}});
                 var bookmarks = $localStorage.bookmarks;
                 var postId = parseInt(postId);
                 var index = bookmarks.id.indexOf(postId);
                 if (index === -1) {
+                    //Add Bookmark post to local storage of the device
                     bookmarks.data.push({id: postId, title: title, date: date});
                     bookmarks.id.push(postId);
                     bookmarkStatus = 'Bookmarked';
                 } else {
+                    //Remove bookmark post from local storage of the device
                     bookmarks.data.splice(index,1);
                     bookmarks.id.splice(index,1);
                     bookmarkStatus = 'Unbookmarked';
                 }
+                //Show Ionic 'Loading Bookmark' text
                 $ionicLoading.show({
                     template: bookmarkStatus,
                     duration: 1000

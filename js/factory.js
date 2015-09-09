@@ -1,7 +1,17 @@
 angular.module("starter.factory", [])
+
+        /**
+         * Network connectivity monitor
+         * 
+         * @param {type} $rootScope      rootscope
+         * @param {type} $cordovaNetwork coredovaNetwork
+         * @param {type} $state          switch the state of the view
+         * @returns {factory_L5.factoryAnonym$1}
+         */
         .factory('ConnectivityMonitor', function ($rootScope, $cordovaNetwork, $state) {
 
             return {
+                //Check network connection is online
                 isOnline: function () {
                     if (ionic.Platform.isWebView()) {
                         return $cordovaNetwork.isOnline();
@@ -9,6 +19,7 @@ angular.module("starter.factory", [])
                         return navigator.onLine;
                     }
                 },
+                //Check network connection is offline
                 ifOffline: function () {
                     if (ionic.Platform.isWebView()) {
                         return !$cordovaNetwork.isOnline();
@@ -16,6 +27,7 @@ angular.module("starter.factory", [])
                         return !navigator.onLine;
                     }
                 },
+                //Check the network connection status
                 startWatching: function () {
 
                     if (ionic.Platform.isWebView()) {

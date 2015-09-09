@@ -1,4 +1,12 @@
 angular.module("starter.directives", [])
+
+        /**
+         * Youtube video
+         * 
+         * @param {type} $ionicPlatform
+         * @param {type} youtubeEmbedUtils
+         * @returns {directives_L5.directivesAnonym$2}
+         */
         .directive("ionYoutubeVideo", ["$ionicPlatform", "youtubeEmbedUtils", function ($ionicPlatform, youtubeEmbedUtils) {
                 return {
                     restrict: "E",
@@ -9,7 +17,9 @@ angular.module("starter.directives", [])
                             $scope.playerVars = {
                                 rel: 0,
                                 showinfo: 0
-                            }, $ionicPlatform.on("pause", function () {
+                            }, 
+                            //Stop Youtube video when clicking device pause function
+                            $ionicPlatform.on("pause", function () {
                                 var e = youtubeEmbedUtils.ready;
                                 e && $scope.ytVideo.stopVideo();
                             });
@@ -18,6 +28,15 @@ angular.module("starter.directives", [])
                     replace: false
                 };
             }])
+        
+        /**
+         * Find Youtube url
+         * 
+         * @param {type} $timeout
+         * @param {type} _  
+         * @param {type} $compile
+         * @returns {directives_L32.directivesAnonym$4}
+         */
         .directive("postDetails", ["$timeout", "_", "$compile", function ($timeout, _, $compile) {
                 return {
                     restrict: "A",
@@ -43,6 +62,13 @@ angular.module("starter.directives", [])
                     }
                 };
             }])
+        
+        /**
+         * Stop image click event
+         * 
+         * @param {type} $timeout timeout
+         * @returns {directives_L66.directivesAnonym$5}
+         */
         .directive("stopImageClickEvent", function ($timeout) {
             return {
                 restrict: 'A',

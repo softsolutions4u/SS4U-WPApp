@@ -21,6 +21,11 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                 }
                 $ionicAnalytics.register();
             });
+            
+            /*
+             * When we change the navigation menu, each menu will be redirected to respective pages.
+               This is accomplished by using Statechange and Stateprovider event which is  activated when the state is changed.
+             */
             $rootScope.$on("$stateChangeStart", function(event, toState) {
                 //Check whether the network is online/offline mode
                 if (ConnectivityMonitor.ifOffline()) {
@@ -42,7 +47,15 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                 });
             });
         })
-
+       
+        /**
+         * Define all the navigations  and respective contents.
+         * 
+         * @param {type} $stateProvider       interfaces to declare states for your app.
+         * @param {type} $urlRouterProvider   watching the $location change
+         * @param {type} $ionicConfigProvider configuration phase of the app
+         * @returns null
+         */
         .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             $ionicConfigProvider.views.forwardCache(true);
             $stateProvider
