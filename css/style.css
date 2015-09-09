@@ -284,8 +284,8 @@ body {
 .menu-items a.item-content span.menu-title {
     margin: 10px 0;
     display: inline-block;
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 16px;
+    line-height: 18px;
     background: rgba(0,0,0, 0.4);
     padding: 0 4px;
     color: #fff;
@@ -500,16 +500,11 @@ body {
 }
 
 .post-detail-view .post-item-share {
-    border: 1px solid #454445;
-    background: #454445;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    -moz-border-radius-bottomleft: 3px;
-    -moz-border-radius-bottomright: 3px;
-    padding: 3px;
-    margin-top: 20px;
+    border: 0 none;
+    border-top: 1px solid #fff;
+    background: transparent;
+    padding: 5px 3px;
+    margin-top: 8px;
 }
 .post-detail-view .post-item-share span {
     width: 50%;
@@ -517,31 +512,41 @@ body {
 }
 .post-detail-view .post-item-share a.bookmark i.icon{
     color: #999;
-    font-size: 20px;
+    font-size: 24px;
 }
 .post-detail-view .post-item-share a.bookmark i.icon.active{
     color: #25A825;
 }
 .post-detail-view .post-item-share span a {
     color: #fff;
-    padding-left: 15px;
+    padding-left: 5px;
     text-decoration: none;
 }
 .post-detail-view .post-item-share span a.increase {
     font-weight: bold;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .post-detail-view .post-item-share span a.decrease {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
+    padding-left: 20px;
 }
 .post-detail-view .post-item-share span.social-icons {
     text-align: right;
 }
 .post-detail-view .post-item-share span.social-icons a {
-    padding-right: 15px;
+    padding-right: 10px;
     padding-left: 0;
+}
+.post-detail-view .post-item-share span.social-icons a.social-share i {
+    font-size: 20px;
+}
+.post-detail-view .post-item-share span.social-icons a.bookmark {
+    padding-right: 25px;
+}
+.post-detail-view .footer-post-operations {
+    width: 100%;
 }
 /* Recent post End */
 
@@ -605,10 +610,10 @@ body {
     background-color: #d7f5df;
 }
 .post-view .new-comment {
-    height: 50px;
+    height: 100px;
     background-color: #444;
     background-size: 100% 0;
-    bottom: 6%;
+    bottom: 60px;
 }
 .post-view .new-comment .col {
     padding: 0;
@@ -640,8 +645,23 @@ body {
 } 
 .bar-footer.app-footer {
     background: transparent;
-    height: 30px;
+    height: 60px;
     
+}
+.ionic-scroll.has-footer {
+    bottom: 55px;
+}
+.post-detail-view .has-footer {
+    bottom: 170px;
+}
+
+.action-sheet-wrapper .action-sheet-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.app-footer .app-footer-wrapper {
+    width: 100%;
+    padding: 5px 0;
 }
 .bar-footer.app-footer span{
     width: 100%;
@@ -649,6 +669,10 @@ body {
     font-family: sans-serif;
     font-size: 12px;
     font-weight: bold;
+    display: inline-block;
+}
+.bar-footer.app-footer span:first-child {
+    font-size: 14px;
 }
 .offline-view,.offline-view ion-content {
     margin: auto 0;
@@ -666,4 +690,63 @@ audio::-webkit-media-controls-panel {
 audio:not([controls]) {
     display: none;
     height: 0
+}
+
+.platform-android .action-sheet .action-sheet-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.platform-android .action-sheet .button.destructive {
+    color: #ff3b30;
+}
+.platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button {
+    text-align: center; 
+    border-color: #d1d3d6;; 
+    font-size: 16px;
+    color: #8f8f8f;
+}
+.platform-android .action-sheet .button {
+    display: block;
+    padding: 1px;
+    width: 100%;
+    border-radius: 0;
+    border-color: #d1d3d6;
+    background-color: transparent;
+    color: #007aff;
+    font-size: 21px;
+}
+.platform-android .action-sheet {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.platform-android .action-sheet-group {
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.platform-android .action-sheet-cancel {
+   display: block;
+}
+.bar.login-header {
+    color: #fff;
+    /*
+    background-color: #00619D;
+    background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%); */
+    background: transparent;
+    height: 75px;
+    border: 0 none;
+}
+.bar.login-header div {
+    width: 100%;
+}
+.bar.login-header h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+.bar.login-header h4 {
+    font-size: 13px;
+    font-weight: bold
+}
+.bar.login-header h3, .bar.login-header h4 {
+    color: #fff;
 }

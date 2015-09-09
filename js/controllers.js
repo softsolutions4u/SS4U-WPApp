@@ -211,16 +211,29 @@ angular.module('starter.controllers', [])
             
             //Increase size of the text
             $scope.increase = function() {
+                var status = 'Maximum text size limit reached';
                 if ($scope.fontSize < $scope.maxFontSize) {
                     $scope.fontSize = $scope.fontSize + $scope.fontSizeSteps;
-                }
+                    status = 'Text size increased';
+                } 
+                
+                $ionicLoading.show({
+                    template: status,
+                    duration: 1000
+                });
             };
             
             //Decrease size of the text
             $scope.decrease = function() {
+                var status = 'Minimum text size limit reached';
                 if ($scope.fontSize > $scope.minFontSize) {
                     $scope.fontSize = $scope.fontSize - $scope.fontSizeSteps;
+                    status = 'Text size decreased';
                 }
+                $ionicLoading.show({
+                    template: status,
+                    duration: 1000
+                });
             };
             
             //share the post in social media

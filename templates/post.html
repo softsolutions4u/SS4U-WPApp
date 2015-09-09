@@ -9,8 +9,30 @@
             <div class="item item-body">
                 <div post-details stop-image-click-event ng-style="{'font-size': fontSize + 'px'}" ng-bind-html="post.content | rawHtml"></div>
             </div>
-
-            <div class="item post-item-share">
+        </div>
+        <div class="comments">
+            <div class="list">
+                <a class="item item-avatar" ng-repeat="comment in comments" href="#" ng-class="{highlighted: comment.id === new_comment_id}">
+                    <img ng-src="{{comment.user_gravatar | replaceImageSrc}}">
+                    <h2 ng-bind-html="comment.author.name"><span class="comment-date" ng-bind-html="comment.date | parseDate | amTimeAgo"></span></h2>
+                    <p class="message-content" ng-bind-html="comment.content | rawHtml"></p>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="new-comment post-footer bar bar-footer">
+      <div class="footer-post-operations">
+        <form name="comment_form"  novalidate class="row">
+            <div class="col col-80 content col-center">
+                <input class="new-comment-message" type="text" placeholder="Leave a comment..." ng-model="new_comment" required />
+            </div>
+            <div class="col col-20 button-container col-center">
+                <button class="button button-clear send" type="submit" ng-click="addComment()" ng-disabled="comment_form.$invalid">
+                    Send
+                </button>
+            </div>
+        </form>
+      <div class="item post-item-share">
               <span class="align-left">
                 <a ng-href="#" ng-click="increase()" class="increase">A+</a>
                 <a ng-href="#" ng-click="decrease()" class="decrease">A-</a>
@@ -25,26 +47,5 @@
               </span>
             </div>
         </div>
-        <div class="comments">
-            <div class="list">
-                <a class="item item-avatar" ng-repeat="comment in comments" href="#" ng-class="{highlighted: comment.id === new_comment_id}">
-                    <img ng-src="{{comment.user_gravatar | replaceImageSrc}}">
-                    <h2 ng-bind-html="comment.author.name"><span class="comment-date" ng-bind-html="comment.date | parseDate | amTimeAgo"></span></h2>
-                    <p class="message-content" ng-bind-html="comment.content | rawHtml"></p>
-                </a>
-            </div>
-        </div>
-    </ion-content>
-    <ion-footer-bar class="new-comment post-footer bar bar-footer">
-        <form name="comment_form" class="row" novalidate>
-            <div class="col col-80 content col-center">
-                <input class="new-comment-message" type="text" placeholder="Leave a comment..." ng-model="new_comment" required />
-            </div>
-            <div class="col col-20 button-container col-center">
-                <button class="button button-clear send" type="submit" ng-click="addComment()" ng-disabled="comment_form.$invalid">
-                    Send
-                </button>
-            </div>
-        </form>
     </ion-footer-bar>
 </ion-view>
