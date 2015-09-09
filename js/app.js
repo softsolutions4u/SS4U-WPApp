@@ -2,8 +2,8 @@
 angular.module("underscore", []).factory("_", function() {
     return window._
 }),
-angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
-        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor) {
+angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
+        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics) {
             $ionicPlatform.ready(function () {
                 //Start watching the network status
                 ConnectivityMonitor.startWatching();
@@ -19,12 +19,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                     // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
+                $ionicAnalytics.register();
             });
             $rootScope.$on("$stateChangeStart", function(event, toState) {
                 //Check whether the network is online/offline mode
                 if (ConnectivityMonitor.ifOffline()) {
                     toState.name !== 'offline' ? $state.go("offline") : '';
                     return;
+                }
+                
+                if (typeof toState.data.eventName !== 'undefined') {
+                    $ionicAnalytics.track(toState.data.eventName);
                 }
                 
                 //Check whether the user is logged in or not
@@ -46,7 +51,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         url: "/",
                         templateUrl: "templates/greet.html",
                         data: {
-                            auth: 0
+                            auth: 0,
+                            eventName : 'Greet'
                         }
                     })
                     
@@ -65,7 +71,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         controller: "RegisterCtrl",
                         cache: false,
                         data: {
-                            auth: 0
+                            auth: 0,
+                            eventName : 'Register'
                         }
                     })
                     
@@ -84,7 +91,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         templateUrl: "templates/forgot-password.html",
                         controller: 'ForgotPasswordCtrl',
                         data: {
-                            auth: 0
+                            auth: 0,
+                            eventName : 'Forgot password'
                         }
                     })
                     
@@ -107,7 +115,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Search'
                         }
                     })
 
@@ -120,7 +129,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Categories'
                         }
                     })
 
@@ -133,7 +143,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Categories'
                         }
                     })
                     
@@ -146,7 +157,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Home'
                         }
                     })
                     .state('app.posts', {
@@ -158,7 +170,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Recent Posts'
                         }
                     })
 
@@ -171,7 +184,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Post detail'
                         }
                     })
 
@@ -184,7 +198,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Bookmarks'
                         }
                     });
             // if none of the above states are matched, use this as the fallback
