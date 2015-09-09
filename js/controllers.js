@@ -109,10 +109,9 @@ angular.module('starter.controllers', [])
             $scope.showLogOutMenu = function() {
                 //Display 'Logout' action
                 $ionicActionSheet.show({
-                    destructiveText: "Logout",
+                    buttons: [{ text: 'No' }],
+                    destructiveText: "Yes Logout",
                     titleText: "Are you sure you want to logout?",
-                    cancelText: "No",
-                    cancel: function() {},
                     buttonClicked: function() {
                         return true;
                     },
@@ -203,7 +202,7 @@ angular.module('starter.controllers', [])
          * @returns null
          */
         .controller('PostCtrl', function ($scope, $stateParams, $ionicLoading, $cordovaSocialSharing, PostService, AccessService, $ionicScrollDelegate, BookmarkService) {
-            $scope.minFontSize   = 12;
+            $scope.minFontSize   = 15;
             $scope.maxFontSize   = 30;
             $scope.fontSizeSteps = 2;
             
@@ -211,28 +210,32 @@ angular.module('starter.controllers', [])
             
             //Increase size of the text
             $scope.increase = function() {
-                var status = 'Maximum text size limit reached';
+                var status = '<strong>Maximum text size limit reached<strong>';
+                var duration = 2000;
                 if ($scope.fontSize < $scope.maxFontSize) {
                     $scope.fontSize = $scope.fontSize + $scope.fontSizeSteps;
                     status = 'Text size increased';
+                    duration = 1000;
                 } 
                 
                 $ionicLoading.show({
                     template: status,
-                    duration: 1000
+                    duration: duration
                 });
             };
             
             //Decrease size of the text
             $scope.decrease = function() {
-                var status = 'Minimum text size limit reached';
+                var status = '<small>Minimum text size limit reached</small>';
+                var duration = 2000;
                 if ($scope.fontSize > $scope.minFontSize) {
                     $scope.fontSize = $scope.fontSize - $scope.fontSizeSteps;
                     status = 'Text size decreased';
+                    duration = 1000;
                 }
                 $ionicLoading.show({
                     template: status,
-                    duration: 1000
+                    duration: duration
                 });
             };
             

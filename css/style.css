@@ -71,7 +71,6 @@ body {
     width: 100%;
     font-size: 24px;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
 
@@ -81,11 +80,20 @@ body {
     color: #fff;
     font-weight: 800;
     font-family: sans-serif;
+    text-transform: uppercase;
 }
-
+.greet-view h4 {
+    font-size: 22px;
+    text-shadow: 0 1px 0 #000;
+    color: #fff;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-style: italic;
+    padding: 0 8px;
+}
 .bottom-content {
     position: absolute;
-    bottom: 0;
+    top: 50%;
     width: 100%;
 }
 
@@ -193,7 +201,7 @@ body {
 
 .form-wrapper .alternative-actions a.button {
     font-family: sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     color: #fff;
     line-height: 5px;
@@ -380,17 +388,17 @@ body {
 .home-content .post-items-list span.post-item-content h2,
 .categories a.item h2
 {
-    font-size: 15px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 20px;
     color: #000;
 }
 
 .home-content .post-items-list span.post-item-content p,
 .categories a.item p,
 .post-detail-view .post-item-title p {
-    font-size: 12px;
+    font-size: 14px;
     color: #666;
-    line-height: 15px;
+    line-height: 16px;
 }
 /*Home End*/
 
@@ -404,8 +412,8 @@ body {
 
 .recent-posts .item.post-item-title h2 {
     color: #fff;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 20px;
     font-weight: 600;
 }
 .recent-posts .item.post-item-title p {
@@ -413,15 +421,15 @@ body {
 }
 
 .font-11 {
-    font-size: 11px !important;
+    font-size: 14px !important;
     line-height: 14px !important;
 }
 .recent-posts .post-item-content p {
     color: #666;
     margin-bottom: 10px;
     white-space: normal;
-    font-size: 11px ;
-    line-height: 14px;
+    font-size: 15px ;
+    line-height: 20px;
 }
 .recent-posts .post-item-content div.post-item-content-body {
     white-space: normal;
@@ -449,7 +457,7 @@ body {
     background-color: #00619D;
     padding: 4px 16px;
     line-height: 14px;
-    font-size: 10px;
+    font-size: 12px;
     min-height: 22px;
     color: #fff;
     border-color: #00619D;
@@ -519,7 +527,7 @@ body {
 }
 .post-detail-view .post-item-share span a {
     color: #fff;
-    padding-left: 5px;
+    padding: 5px;
     text-decoration: none;
 }
 .post-detail-view .post-item-share span a.increase {
@@ -536,14 +544,14 @@ body {
     text-align: right;
 }
 .post-detail-view .post-item-share span.social-icons a {
-    padding-right: 10px;
-    padding-left: 0;
+    padding: 10px;
 }
 .post-detail-view .post-item-share span.social-icons a.social-share i {
     font-size: 20px;
 }
 .post-detail-view .post-item-share span.social-icons a.bookmark {
-    padding-right: 25px;
+    padding: 10px 15px 10px 20px;
+    margin-right: 10px;
 }
 .post-detail-view .footer-post-operations {
     width: 100%;
@@ -577,10 +585,10 @@ body {
     top: 12px;
 }
 .categories a.item h2 {
-    font-size: 14px;
+    font-size: 16px;
 }
 .categories a.item p {
-    font-size: 11px;
+    font-size: 14px;
     color: #999;
 }
 .categories a.item .icon {
@@ -727,21 +735,27 @@ audio:not([controls]) {
 .platform-android .action-sheet-cancel {
    display: block;
 }
-.bar.login-header {
+/*.bar.login-header {
     color: #fff;
-    /*
+    
     background-color: #00619D;
-    background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%); */
+    background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%); 
+    color: #fff;
     background: transparent;
-    height: 75px;
+    height: 100%;
     border: 0 none;
+    max-height: 175px;
 }
 .bar.login-header div {
     width: 100%;
+    padding: 65px 0 20px 0;
 }
 .bar.login-header h3 {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 48px;
+    text-shadow: 0 1px 0 #000;
+    color: #fff;
+    font-weight: 800;
+    font-family: sans-serif;
 }
 .bar.login-header h4 {
     font-size: 13px;
@@ -750,3 +764,6 @@ audio:not([controls]) {
 .bar.login-header h3, .bar.login-header h4 {
     color: #fff;
 }
+.login-view .form-wrapper:before {
+    margin-top: 130px;
+}*/
