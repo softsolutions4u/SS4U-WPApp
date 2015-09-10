@@ -36,17 +36,14 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                 if (typeof toState.data.eventName !== 'undefined') {
                     $ionicAnalytics.track(toState.data.eventName);
                 }
-                console.log(toState);
-                //Show/hide the footer
-                //$rootScope.$apply(function() {
-                    $rootScope.showFooter = (   typeof toState.data.showFooter !== 'undefined' 
-                                            && toState.data.showFooter
-                                           ) 
-                                           ? true
-                                           : false;
-               // });
                 
-                console.log($rootScope.showFooter);                
+                //Show/hide the footer menu
+                $rootScope.showFooter = (   typeof toState.data.showFooter !== 'undefined' 
+                                        && toState.data.showFooter
+                                       ) 
+                                       ? true
+                                       : false;
+                
                 //Check whether the user is logged in or not
                 AccessService.userIsLoggedIn().then(function(res) {
                     if ( toState.data.auth ) {
