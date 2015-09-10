@@ -36,7 +36,17 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                 if (typeof toState.data.eventName !== 'undefined') {
                     $ionicAnalytics.track(toState.data.eventName);
                 }
+                console.log(toState);
+                //Show/hide the footer
+                //$rootScope.$apply(function() {
+                    $rootScope.showFooter = (   typeof toState.data.showFooter !== 'undefined' 
+                                            && toState.data.showFooter
+                                           ) 
+                                           ? true
+                                           : false;
+               // });
                 
+                console.log($rootScope.showFooter);                
                 //Check whether the user is logged in or not
                 AccessService.userIsLoggedIn().then(function(res) {
                     if ( toState.data.auth ) {
@@ -65,7 +75,8 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                         templateUrl: "templates/greet.html",
                         data: {
                             auth: 0,
-                            eventName : 'Greet'
+                            eventName : 'Greet',
+                            showFooter: true
                         }
                     })
                     
@@ -85,7 +96,8 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                         cache: false,
                         data: {
                             auth: 0,
-                            eventName : 'Register'
+                            eventName : 'Register',
+                            showFooter: true
                         }
                     })
                     
@@ -95,7 +107,8 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                         controller: 'LoginCtrl',
                         cache: false,
                         data: {
-                            auth: 0
+                            auth: 0,
+                            showFooter: true
                         }
                     })
                     
@@ -105,7 +118,8 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                         controller: 'ForgotPasswordCtrl',
                         data: {
                             auth: 0,
-                            eventName : 'Forgot password'
+                            eventName : 'Forgot password',
+                            showFooter: true
                         }
                     })
                     

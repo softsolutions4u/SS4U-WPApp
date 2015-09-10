@@ -621,7 +621,8 @@ body {
     height: 100px;
     background-color: #444;
     background-size: 100% 0;
-    bottom: 60px;
+   /* bottom: 60px; */
+   bottom: 0;
 }
 .post-view .new-comment .col {
     padding: 0;
@@ -660,7 +661,8 @@ body {
     bottom: 55px;
 }
 .post-detail-view .has-footer {
-    bottom: 170px;
+   /* bottom: 170px; */
+   bottom: 110px;
 }
 
 .action-sheet-wrapper .action-sheet-title {
