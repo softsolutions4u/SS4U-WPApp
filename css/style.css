@@ -684,6 +684,10 @@ body {
 .bar-footer.app-footer span:first-child {
     font-size: 14px;
 }
+.bar-footer.app-footer span:last-child {
+    font-style: italic;
+}
+
 .offline-view,.offline-view ion-content {
     margin: auto 0;
     width: 100%;
