@@ -86,14 +86,15 @@ body {
     font-size: 22px;
     text-shadow: 0 1px 0 #000;
     color: #fff;
-    font-weight: 600;
+/*    font-weight: 600;*/
     font-family: sans-serif;
     font-style: italic;
     padding: 0 8px;
 }
 .bottom-content {
     position: absolute;
-    top: 50%;
+/*    top: 50%;*/
+    bottom: 0;
     width: 100%;
 }
 
