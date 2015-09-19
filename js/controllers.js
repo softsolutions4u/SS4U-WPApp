@@ -376,7 +376,7 @@ angular.module('starter.controllers', [])
         .controller('OfflineCtrl', function ($scope, $state, ConnectivityMonitor) {
             $scope.checkConnection = function() {
                 if (ConnectivityMonitor.isOnline()) {
-                    $state.go("app.home");
+                    $state.go("app.home", {}, { reload: true });
                 }
             };
         })

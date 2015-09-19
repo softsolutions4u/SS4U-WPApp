@@ -8,7 +8,7 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                 //Start watching the network status
                 ConnectivityMonitor.startWatching();
                 AccessService.userIsLoggedIn().then(function(result) {
-                    result === true ? $state.go("app.home") : $state.go("greet");
+                    result === true ? $state.go("app.home", {}, { reload: true }) : $state.go("greet");
                 });
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
@@ -42,7 +42,7 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                     if ( toState.data.auth ) {
                         res === false && (event.preventDefault(), $state.go("greet"));
                     } else {
-                        res === true && (event.preventDefault(), $state.go("app.home"));
+                        res === true && (event.preventDefault(), $state.go("app.home", {}, { reload: true }));
                     }
                 });
             });

@@ -741,6 +741,38 @@ audio:not([controls]) {
 .platform-android .action-sheet-cancel {
    display: block;
 }
+
+.register-view ion-content .scroll, 
+.login-view ion-content .scroll{
+    height: 100%;
+}
+
+.register-view ion-content .scroll-bar,
+.login-view ion-content .scroll-bar{
+   display: none;
+}
+
+@media ( max-height: 450px ) {
+    .register-view ion-content,
+    .login-view ion-content{
+        bottom: 60px;
+    }
+    
+    .register-view ion-content .scroll-bar,
+    .login-view ion-content .scroll-bar{
+       display: block;
+    }
+}
+
+.main-menu ion-content {
+    bottom: 60px;
+}
+
+@media ( max-height: 380px ) {
+    .greet-view .head-title {
+        padding-top: 0;
+    }
+}
 /*.bar.login-header {
     color: #fff;
     
