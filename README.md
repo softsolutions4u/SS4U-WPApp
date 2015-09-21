@@ -29,6 +29,9 @@ $ cordova plugin add nl.x-services.plugins.socialsharing
 ```
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
 ```
+```
+cordova plugin add https://github.com/driftyco/ionic-plugin-keyboard
+```
 
 Replace the _www_ folder with the current branch files.
 
