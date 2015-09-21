@@ -742,66 +742,8 @@ audio:not([controls]) {
    display: block;
 }
 
-.register-view ion-content .scroll, 
-.login-view ion-content .scroll{
-    height: 100%;
-}
-
-.register-view ion-content .scroll-bar,
-.login-view ion-content .scroll-bar{
-   display: none;
-}
-
-@media ( max-height: 450px ) {
-    .register-view ion-content,
-    .login-view ion-content{
-        bottom: 60px;
-    }
-    
-    .register-view ion-content .scroll-bar,
-    .login-view ion-content .scroll-bar{
-       display: block;
-    }
-}
-
-.main-menu ion-content {
-    bottom: 60px;
-}
-
 @media ( max-height: 380px ) {
     .greet-view .head-title {
         padding-top: 0;
     }
 }
-/*.bar.login-header {
-    color: #fff;
-    
-    background-color: #00619D;
-    background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%); 
-    color: #fff;
-    background: transparent;
-    height: 100%;
-    border: 0 none;
-    max-height: 175px;
-}
-.bar.login-header div {
-    width: 100%;
-    padding: 65px 0 20px 0;
-}
-.bar.login-header h3 {
-    font-size: 48px;
-    text-shadow: 0 1px 0 #000;
-    color: #fff;
-    font-weight: 800;
-    font-family: sans-serif;
-}
-.bar.login-header h4 {
-    font-size: 13px;
-    font-weight: bold
-}
-.bar.login-header h3, .bar.login-header h4 {
-    color: #fff;
-}
-.login-view .form-wrapper:before {
-    margin-top: 130px;
-}*/

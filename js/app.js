@@ -3,8 +3,10 @@ angular.module("underscore", []).factory("_", function() {
     return window._
 }),
 angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
-        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics) {
+        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics, $cordovaKeyboard, $cordovaSplashscreen) {
             $ionicPlatform.ready(function () {
+                
+                $cordovaSplashscreen.hide();
                 //Start watching the network status
                 ConnectivityMonitor.startWatching();
                 AccessService.userIsLoggedIn().then(function(result) {
@@ -45,6 +47,13 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                         res === true && (event.preventDefault(), $state.go("app.home", {}, { reload: true }));
                     }
                 });
+            });
+            
+            //Hide the footer content when the keyboard is visible
+            $rootScope.$watch(function() {
+                return $cordovaKeyboard.isVisible();
+            }, function(value) {
+                $rootScope.keyboardOpen = value;
             });
         })
        
@@ -215,6 +224,10 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                             eventName : 'Bookmarks'
                         }
                     });
-            // if none of the above states are matched, use this as the fallback
-            $urlRouterProvider.otherwise('/app/home');
+                    
+                    // if none of the above states are matched, use this as the fallback
+                    n = JSON.parse(window.localStorage.user || null);
+                    null !== n && null !== n.cookie
+                    ? $urlRouterProvider.otherwise('/app/home')
+                    : $urlRouterProvider.otherwise('/');
         });
