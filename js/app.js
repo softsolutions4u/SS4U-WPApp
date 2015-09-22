@@ -5,13 +5,13 @@ angular.module("underscore", []).factory("_", function() {
 angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
         .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics, $cordovaKeyboard, $cordovaSplashscreen) {
             $ionicPlatform.ready(function () {
+                if (ionic.Platform.isWebView()) {
+                    $cordovaSplashscreen.hide();
+                }
                 
-                $cordovaSplashscreen.hide();
                 //Start watching the network status
                 ConnectivityMonitor.startWatching();
-                AccessService.userIsLoggedIn().then(function(result) {
-                    result === true ? $state.go("app.home", {}, { reload: true }) : $state.go("greet");
-                });
+                
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
                 if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -50,11 +50,13 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
             });
             
             //Hide the footer content when the keyboard is visible
-            $rootScope.$watch(function() {
-                return $cordovaKeyboard.isVisible();
-            }, function(value) {
-                $rootScope.keyboardOpen = value;
-            });
+            if (ionic.Platform.isWebView()) {
+                $rootScope.$watch(function() {
+                    return $cordovaKeyboard.isVisible();
+                }, function(value) {
+                    $rootScope.keyboardOpen = value;
+                });
+            }
         })
        
         /**
