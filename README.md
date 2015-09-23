@@ -17,7 +17,7 @@ Installation
 $ sudo npm install -g ionic cordova
 $ sudo ionic start myApp balnk
 ```
-For socail sharing include cordova plugin [Social Sharing plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
+For social sharing include cordova plugin [Social Sharing plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
 
 ```
 $ ionic plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
@@ -28,6 +28,12 @@ $ cordova plugin add nl.x-services.plugins.socialsharing
 ```
 ```
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
+```
+
+For splash screen include cordova plugin
+
+```
+cordova plugin add org.apache.cordova.splashscreen
 ```
 
 Replace the _www_ folder with the current branch files.
