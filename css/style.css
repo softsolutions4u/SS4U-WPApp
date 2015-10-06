@@ -295,7 +295,7 @@ body {
     display: inline-block;
     font-size: 16px;
     line-height: 18px;
-    background: rgba(0,0,0, 0.4);
+    background: transparent;
     padding: 0 4px;
     color: #fff;
 }
@@ -337,8 +337,8 @@ body {
     /*height: 58px;*/
     border-radius: 50%;
     position: absolute;
-    top: 14%;
-    left: 10%;
+    top: 12%;
+    left: 12%;
 }
 
 .profile-heading-item .item-content span.heading-action {
