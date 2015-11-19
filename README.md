@@ -27,6 +27,11 @@ or
 $ cordova plugin add nl.x-services.plugins.socialsharing
 ```
 
+For push notification add plugin [$cordovaPush](http://ngcordova.com/docs/plugins/pushNotifications/)
+```
+cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+```
+
 Replace the _www_ folder with the current branch files.
 
 Wordpress setup
