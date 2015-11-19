@@ -36,6 +36,11 @@ For splash screen include cordova plugin
 cordova plugin add org.apache.cordova.splashscreen
 ```
 
+For checking network activity include [$cordovaNetwork](http://ngcordova.com/docs/plugins/network/)
+```
+cordova plugin add org.apache.cordova.network-information
+```
+
 Replace the _www_ folder with the current branch files.
 
 Wordpress setup
