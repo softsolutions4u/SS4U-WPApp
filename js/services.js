@@ -204,11 +204,7 @@ angular.module("starter.services", [])
                     if (config === null) {
                         return;
                     }
-                    $cordovaPush.register(config).then(function (result) {
-                        $cordovaToast.showShortCenter('Registered for push notifications');
-                    }, function (err) {
-                        $cordovaDialogs.alert("Register error " + err);
-                    });
+                    $cordovaPush.register(config);
                 };
 
                 // Notification Received
@@ -218,7 +214,7 @@ angular.module("starter.services", [])
                             notification.regid.length > 0 && WordpressPushService.storeDeviceToken("android", notification.regid);
                             break;
                         case "message":
-                            console.log("message = " + notification);
+                            alert('message = ' + notification.message);
                             break;
                         case "error":
                             break;
@@ -226,15 +222,13 @@ angular.module("starter.services", [])
                 });
         }])
 
-        .service('WordpressPushService', ['$http', 'WORDPRESS_PUSH_URL', '$cordovaDialogs', function($http, WORDPRESS_PUSH_URL, $cordovaDialogs) {
+        .service('WordpressPushService', ['$http', '$q', 'WORDPRESS_API_URL', function($http, $q, WORDPRESS_API_URL) {
             this.storeDeviceToken = function(platform, token) {
-                $http.get(WORDPRESS_PUSH_URL + token)
-                    .success(function (data, status) {
-                        $cordovaDialogs.alert("Token stored, device is successfully subscribed to receive push notifications.");
-                    })
-                    .error(function (data, status) {
-                        $cordovaDialogs.alert("Error storing device token." + data + " " + status);
-                    }
-                );
+                var s = $q.defer();
+                return $http.jsonp(WORDPRESS_API_URL + 'gcmpush/register/?id=' + token +'&callback=JSON_CALLBACK').success(function(e) {
+                    s.resolve(e);
+                }).error(function(e) {
+                    s.reject(e);
+                }), s.promise;
             };
         }]);
