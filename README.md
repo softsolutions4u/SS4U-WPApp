@@ -40,3 +40,4 @@ Wordpress setup
 Install latest wordpress in your server and install the following plugins,
 * [JSON API](https://wordpress.org/plugins/json-api/)
 * [JSON API User](https://wordpress.org/plugins/json-api-user/). After installing it should enabled in wordpress settings.
+* Wordpress GCM Push. Contact our the administrator to get plugin files.
