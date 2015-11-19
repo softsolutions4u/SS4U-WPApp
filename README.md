@@ -26,6 +26,9 @@ or
 ```
 $ cordova plugin add nl.x-services.plugins.socialsharing
 ```
+
+For open the link in external browser include
+
 ```
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
 ```
