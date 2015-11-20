@@ -250,7 +250,7 @@ angular.module("starter.services", [])
             };
         })
 
-        .service('PushNotificationService', ['$rootScope', '$cordovaPush', 'GCM_PROJECT_ID', '$cordovaToast', '$cordovaDialogs', 'WordpressPushService', function($rootScope, $cordovaPush, GCM_PROJECT_ID, $cordovaToast, $cordovaDialogs, WordpressPushService) {
+        .service('PushNotificationService', ['$rootScope', '$state', '$cordovaPush', 'GCM_PROJECT_ID', '$ionicPopup', 'WordpressPushService', function($rootScope, $state, $cordovaPush, GCM_PROJECT_ID, $ionicPopup, WordpressPushService) {
                 this.register = function() {
                     var config = null;
                     if (ionic.Platform.isAndroid()) {
@@ -272,7 +272,23 @@ angular.module("starter.services", [])
                             notification.regid.length > 0 && WordpressPushService.storeDeviceToken("android", notification.regid);
                             break;
                         case "message":
-                            alert('message = ' + notification.message);
+                            if (notification.foreground) {
+                                if (notification.payload && notification.payload.type === 'new_post') {
+                                    $ionicPopup.confirm({
+                                        title: 'New Post added',
+                                        template: notification.payload.title + ' ' + notification.payload.message,
+                                        okText: 'View'
+                                    }).then(function(res) {
+                                        if(res) {
+                                          $state.go('app.post', {postId: notification.payload.postId});
+                                        }
+                                    });
+                                }
+                            } else {
+                                if (notification.payload && notification.payload.type === 'new_post') {
+                                    $state.go('app.post', {postId: notification.payload.postId});
+                                }
+                            }
                             break;
                         case "error":
                             break;
