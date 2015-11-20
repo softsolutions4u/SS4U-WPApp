@@ -250,7 +250,7 @@ angular.module("starter.services", [])
             };
         })
 
-        .service('PushNotificationService', ['$rootScope', '$state', '$cordovaPush', 'GCM_PROJECT_ID', '$ionicPopup', 'WordpressPushService', function($rootScope, $state, $cordovaPush, GCM_PROJECT_ID, $ionicPopup, WordpressPushService) {
+        .service('PushNotificationService', ['$rootScope', '$state', '$cordovaPush', 'GCM_PROJECT_ID', 'WordpressPushService', function($rootScope, $state, $cordovaPush, GCM_PROJECT_ID, WordpressPushService) {
                 this.register = function() {
                     var config = null;
                     if (ionic.Platform.isAndroid()) {
@@ -273,17 +273,7 @@ angular.module("starter.services", [])
                             break;
                         case "message":
                             if (notification.foreground) {
-                                if (notification.payload && notification.payload.type === 'new_post') {
-                                    $ionicPopup.confirm({
-                                        title: 'New Post added',
-                                        template: notification.payload.title + ' ' + notification.payload.message,
-                                        okText: 'View'
-                                    }).then(function(res) {
-                                        if(res) {
-                                          $state.go('app.post', {postId: notification.payload.postId});
-                                        }
-                                    });
-                                }
+                                WordpressPushService.handleForeGroundNotification(notification);
                             } else {
                                 if (notification.payload && notification.payload.type === 'new_post') {
                                     $state.go('app.post', {postId: notification.payload.postId});
@@ -296,7 +286,7 @@ angular.module("starter.services", [])
                 });
         }])
 
-        .service('WordpressPushService', ['$http', '$q', 'WORDPRESS_API_URL', function($http, $q, WORDPRESS_API_URL) {
+        .service('WordpressPushService', ['$http', '$q', '$state', '$ionicPopup', 'WORDPRESS_API_URL', function($http, $q, $state, $ionicPopup, WORDPRESS_API_URL) {
             this.storeDeviceToken = function(platform, token) {
                 var s = $q.defer();
                 return $http.jsonp(WORDPRESS_API_URL + 'gcmpush/register/?id=' + token +'&callback=JSON_CALLBACK').success(function(e) {
@@ -304,5 +294,19 @@ angular.module("starter.services", [])
                 }).error(function(e) {
                     s.reject(e);
                 }), s.promise;
+            };
+
+            this.handleForeGroundNotification = function(notification) {
+                if (notification.payload && notification.payload.type === 'new_post') {
+                    var confirmPopup = $ionicPopup.confirm({
+                        title: 'New Post added',
+                        template: notification.payload.title + ' ' + notification.payload.message
+                    });
+                    confirmPopup.then(function(res) {
+                        if(res) {
+                          $state.go('app.post', {postId: notification.payload.postId});
+                        }
+                    });
+                }
             };
         }]);

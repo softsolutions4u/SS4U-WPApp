@@ -380,7 +380,25 @@ angular.module('starter.controllers', [])
                 }
             };
         })
-        
+
+        /**
+         * Settings page controller
+         *
+         * @param {type} $scope        data model
+         * @param {type} $localStorage Local storage
+         *
+         * @returns null
+         */
+        .controller('SettingsCtrl', function($scope, $localStorage){
+            $localStorage.$default({pushNotificationStatus: true});
+            $scope.pushNotification  = {};
+            $scope.pushNotification.checked = $localStorage.pushNotificationStatus;
+
+            $scope.pushNotificationChange = function() {
+                $localStorage.pushNotificationStatus = $scope.pushNotification.checked;
+            };
+        })
+
         /**
          * View 'Bookmark' posts
          * 

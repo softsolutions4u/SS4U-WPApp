@@ -1,5 +1,12 @@
-<ion-view enable-menu-with-back-views="false" class="settings">
+<ion-view view-title="Settings" class="settings">
   <ion-content>
-    <ion-toggle ng-model="notifications" toggle-class="toggle-dark">Push Notifications</ion-toggle>
+    <ion-toggle
+        ng-model="pushNotification.checked"
+        ng-checked="{{pushNotification.checked}}"
+        ng-change="pushNotificationChange()"
+        toggle-class="toggle-positive"
+    >
+        Push Notifications
+    </ion-toggle>
   </ion-content>
 </ion-view>

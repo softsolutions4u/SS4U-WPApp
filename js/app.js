@@ -216,6 +216,20 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                         }
                     })
 
+                    .state('app.settings', {
+                        url: "/settings",
+                        views: {
+                            menuContent: {
+                                templateUrl: "templates/settings.html",
+                                controller: 'SettingsCtrl'
+                            }
+                        },
+                        data: {
+                            auth: 1,
+                            eventName : 'Settings'
+                        }
+                    })
+
                     .state('app.bookmarks', {
                         url: "/bookmarks",
                         views: {
