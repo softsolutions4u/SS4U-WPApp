@@ -17,7 +17,7 @@ Installation
 $ sudo npm install -g ionic cordova
 $ sudo ionic start myApp balnk
 ```
-For socail sharing include cordova plugin [Social Sharing plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
+For social sharing include cordova plugin [Social Sharing plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
 
 ```
 $ ionic plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
@@ -25,6 +25,23 @@ $ ionic plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plug
 or
 ```
 $ cordova plugin add nl.x-services.plugins.socialsharing
+```
+
+For open the link in external browser include
+
+```
+cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
+```
+
+For splash screen include cordova plugin
+
+```
+cordova plugin add org.apache.cordova.splashscreen
+```
+
+For checking network activity include [$cordovaNetwork](http://ngcordova.com/docs/plugins/network/)
+```
+cordova plugin add org.apache.cordova.network-information
 ```
 
 For push notification add plugin [$cordovaPush](http://ngcordova.com/docs/plugins/pushNotifications/)
@@ -41,3 +58,4 @@ Install latest wordpress in your server and install the following plugins,
 * [JSON API](https://wordpress.org/plugins/json-api/)
 * [JSON API User](https://wordpress.org/plugins/json-api-user/). After installing it should enabled in wordpress settings.
 * Wordpress GCM Push. Contact our the administrator to get plugin files.
+

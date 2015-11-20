@@ -1,4 +1,4 @@
-<ion-view class="post-view post-detail-view main-menu-bg" view-title="{{post.title}}" >
+<ion-view class="post-view post-detail-view main-menu-bg" view-title="{{post.title}}" cache-view="false">
     <ion-content class="padding">
         <div class="list card">
             <div class="item post-item-title">
@@ -9,26 +9,11 @@
             <div class="item item-body">
                 <div post-details stop-image-click-event ng-style="{'font-size': fontSize + 'px'}" ng-bind-html="post.content | rawHtml"></div>
             </div>
-
-            <div class="item post-item-share">
-              <span class="align-left">
-                <a ng-href="#" ng-click="addBookmark()" class="bookmark">
-                  <i class="icon ion-bookmark" ng-class="{'active': isBookmarked() == true}"></i>
-                </a>
-                <a ng-href="#" ng-click="increase()">A+</a>
-                <a ng-href="#" ng-click="decrease()">A-</a>
-              </span>
-              <span class="align-right social-icons">
-                <a class="social-share" ng-click="shareAnywhere()" ng-href="#">
-                    <i class="icon ion-android-share-alt"></i>
-                </a>
-              </span>
-            </div>
         </div>
         <div class="comments">
             <div class="list">
                 <a class="item item-avatar" ng-repeat="comment in comments" href="#" ng-class="{highlighted: comment.id === new_comment_id}">
-                    <img ng-src="{{comment.user_gravatar}}">
+                    <img ng-src="{{comment.user_gravatar | replaceImageSrc}}">
                     <h2 ng-bind-html="comment.author.name"><span class="comment-date" ng-bind-html="comment.date | parseDate | amTimeAgo"></span></h2>
                     <p class="message-content" ng-bind-html="comment.content | rawHtml"></p>
                 </a>
@@ -36,7 +21,8 @@
         </div>
     </ion-content>
     <ion-footer-bar class="new-comment post-footer bar bar-footer">
-        <form name="comment_form" class="row" novalidate>
+      <div class="footer-post-operations">
+        <form name="comment_form"  novalidate class="row">
             <div class="col col-80 content col-center">
                 <input class="new-comment-message" type="text" placeholder="Leave a comment..." ng-model="new_comment" required />
             </div>
@@ -46,5 +32,20 @@
                 </button>
             </div>
         </form>
+      <div class="item post-item-share">
+              <span class="align-left">
+                <a ng-href="#" ng-click="increase()" class="increase">A+</a>
+                <a ng-href="#" ng-click="decrease()" class="decrease">A-</a>
+              </span>
+              <span class="align-right social-icons">
+                <a ng-href="#" ng-click="addBookmark()" class="bookmark">
+                  <i class="icon ion-bookmark" ng-class="{'active': isBookmarked() == true}"></i>
+                </a>
+                <a class="social-share" ng-click="shareAnywhere()" ng-href="#">
+                    <i class="icon ion-android-share-alt"></i>
+                </a>
+              </span>
+            </div>
+        </div>
     </ion-footer-bar>
 </ion-view>

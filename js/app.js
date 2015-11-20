@@ -2,13 +2,16 @@
 angular.module("underscore", []).factory("_", function() {
     return window._
 }),
-angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
-        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, PushNotificationService) {
+angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
+        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics, $cordovaKeyboard, $cordovaSplashscreen, PushNotificationService) {
             $ionicPlatform.ready(function () {
+                if (ionic.Platform.isWebView()) {
+                    $cordovaSplashscreen.hide();
+                }
+                
+                //Start watching the network status
                 ConnectivityMonitor.startWatching();
-                AccessService.userIsLoggedIn().then(function(result) {
-                    result === true ? $state.go("app.home") : $state.go("greet");
-                });
+                
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
                 if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -18,23 +21,55 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                     // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
+
                 PushNotificationService.register();
+                $ionicAnalytics.register();
+
             });
+            
+            /*
+             * When we change the navigation menu, each menu will be redirected to respective pages.
+               This is accomplished by using Statechange and Stateprovider event which is  activated when the state is changed.
+             */
             $rootScope.$on("$stateChangeStart", function(event, toState) {
+                //Check whether the network is online/offline mode
                 if (ConnectivityMonitor.ifOffline()) {
                     toState.name !== 'offline' ? $state.go("offline") : '';
                     return;
                 }
+                
+                if (typeof toState.data.eventName !== 'undefined') {
+                    $ionicAnalytics.track(toState.data.eventName);
+                }
+                
+                //Check whether the user is logged in or not
                 AccessService.userIsLoggedIn().then(function(res) {
                     if ( toState.data.auth ) {
                         res === false && (event.preventDefault(), $state.go("greet"));
                     } else {
-                        res === true && (event.preventDefault(), $state.go("app.home"));
+                        res === true && (event.preventDefault(), $state.go("app.home", {}, { reload: true }));
                     }
                 });
             });
+            
+            //Hide the footer content when the keyboard is visible
+            if (ionic.Platform.isWebView()) {
+                $rootScope.$watch(function() {
+                    return $cordovaKeyboard.isVisible();
+                }, function(value) {
+                    $rootScope.keyboardOpen = value;
+                });
+            }
         })
-
+       
+        /**
+         * Define all the navigations  and respective contents.
+         * 
+         * @param {type} $stateProvider       interfaces to declare states for your app.
+         * @param {type} $urlRouterProvider   watching the $location change
+         * @param {type} $ionicConfigProvider configuration phase of the app
+         * @returns null
+         */
         .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             $ionicConfigProvider.views.forwardCache(true);
             $stateProvider
@@ -42,9 +77,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                     .state('greet', {
                         url: "/",
                         templateUrl: "templates/greet.html",
-                        controller: 'GreetCtrl',
                         data: {
-                            auth: 0
+                            auth: 0,
+                            eventName : 'Greet'
                         }
                     })
                     
@@ -61,8 +96,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         url: "/register",
                         templateUrl: "templates/register.html",
                         controller: "RegisterCtrl",
+                        cache: false,
                         data: {
-                            auth: 0
+                            auth: 0,
+                            eventName : 'Register'
                         }
                     })
                     
@@ -70,6 +107,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         url: "/login",
                         templateUrl: "templates/login.html",
                         controller: 'LoginCtrl',
+                        cache: false,
                         data: {
                             auth: 0
                         }
@@ -80,7 +118,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                         templateUrl: "templates/forgot-password.html",
                         controller: 'ForgotPasswordCtrl',
                         data: {
-                            auth: 0
+                            auth: 0,
+                            eventName : 'Forgot password'
                         }
                     })
                     
@@ -103,7 +142,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Search'
                         }
                     })
 
@@ -116,7 +156,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Categories'
                         }
                     })
 
@@ -129,7 +170,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Categories'
                         }
                     })
                     
@@ -142,7 +184,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Home'
                         }
                     })
                     .state('app.posts', {
@@ -154,7 +197,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Recent Posts'
                         }
                     })
 
@@ -167,7 +211,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Post detail'
                         }
                     })
 
@@ -180,9 +225,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngStorage', 'starter.directive
                             }
                         },
                         data: {
-                            auth: 1
+                            auth: 1,
+                            eventName : 'Bookmarks'
                         }
                     });
-            // if none of the above states are matched, use this as the fallback
-            $urlRouterProvider.otherwise('/app/home');
+                    
+                    // if none of the above states are matched, use this as the fallback
+                    n = JSON.parse(window.localStorage.user || null);
+                    null !== n && null !== n.cookie
+                    ? $urlRouterProvider.otherwise('/app/home')
+                    : $urlRouterProvider.otherwise('/');
         });

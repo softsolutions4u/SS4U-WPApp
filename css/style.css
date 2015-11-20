@@ -71,7 +71,6 @@ body {
     width: 100%;
     font-size: 24px;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
 
@@ -81,11 +80,21 @@ body {
     color: #fff;
     font-weight: 800;
     font-family: sans-serif;
+    text-transform: uppercase;
 }
-
+.greet-view h4 {
+    font-size: 22px;
+    text-shadow: 0 1px 0 #000;
+    color: #fff;
+/*    font-weight: 600;*/
+    font-family: sans-serif;
+    font-style: italic;
+    padding: 0 8px;
+}
 .bottom-content {
     position: absolute;
-    bottom: 0;
+/*    top: 50%;*/
+    bottom: 60px;
     width: 100%;
 }
 
@@ -107,6 +116,13 @@ body {
     font-style: italic;
     font-weight: 600;
 }
+
+.powered-by a {
+    text-decoration: none;
+}
+.powered-by, .powered-by a {
+    color: #FFF;    
+}
 /* ----------Greet View  End-----------*/
 
 /* Start Login , ForgotPassword And Registration  Page*/
@@ -115,7 +131,9 @@ body {
   height: 100%;
   white-space: nowrap;
 }
- 
+.form-wrapper .header-wrapper {
+    white-space: normal;
+}
 .form-wrapper:before {
   content: '';
   display: inline-block;
@@ -184,7 +202,7 @@ body {
 
 .form-wrapper .alternative-actions a.button {
     font-family: sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     color: #fff;
     line-height: 5px;
@@ -275,9 +293,9 @@ body {
 .menu-items a.item-content span.menu-title {
     margin: 10px 0;
     display: inline-block;
-    font-size: 13px;
-    line-height: 15px;
-    background: rgba(0,0,0, 0.4);
+    font-size: 16px;
+    line-height: 18px;
+    background: transparent;
     padding: 0 4px;
     color: #fff;
 }
@@ -319,8 +337,8 @@ body {
     /*height: 58px;*/
     border-radius: 50%;
     position: absolute;
-    top: 14%;
-    left: 10%;
+    top: 12%;
+    left: 12%;
 }
 
 .profile-heading-item .item-content span.heading-action {
@@ -371,17 +389,17 @@ body {
 .home-content .post-items-list span.post-item-content h2,
 .categories a.item h2
 {
-    font-size: 15px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 20px;
     color: #000;
 }
 
 .home-content .post-items-list span.post-item-content p,
 .categories a.item p,
 .post-detail-view .post-item-title p {
-    font-size: 12px;
+    font-size: 14px;
     color: #666;
-    line-height: 15px;
+    line-height: 16px;
 }
 /*Home End*/
 
@@ -395,8 +413,8 @@ body {
 
 .recent-posts .item.post-item-title h2 {
     color: #fff;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 20px;
     font-weight: 600;
 }
 .recent-posts .item.post-item-title p {
@@ -404,15 +422,15 @@ body {
 }
 
 .font-11 {
-    font-size: 11px !important;
+    font-size: 14px !important;
     line-height: 14px !important;
 }
 .recent-posts .post-item-content p {
     color: #666;
     margin-bottom: 10px;
     white-space: normal;
-    font-size: 11px ;
-    line-height: 14px;
+    font-size: 15px ;
+    line-height: 20px;
 }
 .recent-posts .post-item-content div.post-item-content-body {
     white-space: normal;
@@ -440,7 +458,7 @@ body {
     background-color: #00619D;
     padding: 4px 16px;
     line-height: 14px;
-    font-size: 10px;
+    font-size: 12px;
     min-height: 22px;
     color: #fff;
     border-color: #00619D;
@@ -491,16 +509,11 @@ body {
 }
 
 .post-detail-view .post-item-share {
-    border: 1px solid #454445;
-    background: #454445;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    -moz-border-radius-bottomleft: 3px;
-    -moz-border-radius-bottomright: 3px;
-    padding: 3px;
-    margin-top: 20px;
+    border: 0 none;
+    border-top: 1px solid #fff;
+    background: transparent;
+    padding: 5px 3px;
+    margin-top: 8px;
 }
 .post-detail-view .post-item-share span {
     width: 50%;
@@ -508,22 +521,41 @@ body {
 }
 .post-detail-view .post-item-share a.bookmark i.icon{
     color: #999;
+    font-size: 24px;
 }
 .post-detail-view .post-item-share a.bookmark i.icon.active{
-    color: #fff;
+    color: #25A825;
 }
 .post-detail-view .post-item-share span a {
     color: #fff;
-    padding-left: 15px;
+    padding: 5px;
     text-decoration: none;
-    font-size: 14px;
 }
-.post-detail-view .post-item-share span.social-icons{
+.post-detail-view .post-item-share span a.increase {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.post-detail-view .post-item-share span a.decrease {
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+.post-detail-view .post-item-share span.social-icons {
     text-align: right;
 }
 .post-detail-view .post-item-share span.social-icons a {
-    padding-right: 15px;
-    padding-left: 0;
+    padding: 10px;
+}
+.post-detail-view .post-item-share span.social-icons a.social-share i {
+    font-size: 20px;
+}
+.post-detail-view .post-item-share span.social-icons a.bookmark {
+    padding: 10px 15px 10px 20px;
+    margin-right: 10px;
+}
+.post-detail-view .footer-post-operations {
+    width: 100%;
 }
 /* Recent post End */
 
@@ -554,10 +586,10 @@ body {
     top: 12px;
 }
 .categories a.item h2 {
-    font-size: 14px;
+    font-size: 16px;
 }
 .categories a.item p {
-    font-size: 11px;
+    font-size: 14px;
     color: #999;
 }
 .categories a.item .icon {
@@ -587,9 +619,11 @@ body {
     background-color: #d7f5df;
 }
 .post-view .new-comment {
-    height: 50px;
+    height: 100px;
     background-color: #444;
     background-size: 100% 0;
+   /* bottom: 60px; */
+   bottom: 0;
 }
 .post-view .new-comment .col {
     padding: 0;
@@ -608,6 +642,7 @@ body {
     font-weight: 500;
     font-size: 16px;
 }
+
 .bar-footer {
     bottom: 0;
     border-top-width: 1px;
@@ -617,7 +652,42 @@ body {
 }
 .bar-footer.item-input-inset {
     position: absolute
+} 
+.bar-footer.app-footer {
+    background: transparent;
+    height: 60px;
+    
 }
+.ionic-scroll.has-footer {
+    bottom: 55px;
+}
+.post-detail-view .has-footer {
+   /* bottom: 170px; */
+   bottom: 110px;
+}
+
+.action-sheet-wrapper .action-sheet-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.app-footer .app-footer-wrapper {
+    width: 100%;
+    padding: 5px 0;
+}
+.bar-footer.app-footer span{
+    width: 100%;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 12px;
+    display: inline-block;
+}
+.bar-footer.app-footer span:first-child {
+    font-size: 14px;
+}
+.bar-footer.app-footer span:last-child {
+    font-style: italic;
+}
+
 .offline-view,.offline-view ion-content {
     margin: auto 0;
     width: 100%;
@@ -634,4 +704,46 @@ audio::-webkit-media-controls-panel {
 audio:not([controls]) {
     display: none;
     height: 0
+}
+
+.platform-android .action-sheet .action-sheet-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.platform-android .action-sheet .button.destructive {
+    color: #ff3b30;
+}
+.platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button {
+    text-align: center; 
+    border-color: #d1d3d6;; 
+    font-size: 16px;
+    color: #8f8f8f;
+}
+.platform-android .action-sheet .button {
+    display: block;
+    padding: 1px;
+    width: 100%;
+    border-radius: 0;
+    border-color: #d1d3d6;
+    background-color: transparent;
+    color: #007aff;
+    font-size: 21px;
+}
+.platform-android .action-sheet {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.platform-android .action-sheet-group {
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.platform-android .action-sheet-cancel {
+   display: block;
+}
+
+@media ( max-height: 380px ) {
+    .greet-view .head-title {
+        padding-top: 0;
+    }
 }

@@ -1,5 +1,5 @@
-<ion-view view-title="Recent Posts" class="recent-posts" >
-    <ion-content>
+<ion-view view-title="Recent Posts" class="recent-posts main-menu-bg" cache-view="false">
+    <ion-content class="padding">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
         <div class="list card" ng-repeat="post in posts">
 
@@ -11,9 +11,6 @@
             <div class="item post-item-content icon-left">
               <div post-details class="post-item-content-body" stop-image-click-event ng-bind-html="post.content | rawHtml"></div>
               <div class="share-post-item">
-                <span class="align-left" ng-click="addBookmark('{{post.id}}', '{{post.title}}', '{{post.date}}')" >
-                  <i class="icon ion-bookmark" ng-class="{'active': isBookmarked('{{post.id}}') == true}"></i>
-                </span>
                 <a class="button button-small align-right" ui-sref="app.post({postId : {{post.id}}})">Read more </a>
               </div>
             </div>

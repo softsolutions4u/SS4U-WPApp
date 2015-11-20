@@ -4,7 +4,7 @@
             <div class="list">
                 <div class="item item-input-inset">
                     <label class="item-input-wrapper">
-                        <input type="text" placeholder="Search" ng-model="formData.term">
+                        <input type="text" placeholder="Search post" ng-model="formData.term">
                     </label>
                     <button class="button button-small">
                         Search
@@ -24,7 +24,12 @@
                     <i class="icon ion-arrow-right-c"></i>
                 </a>
             </div>
-
+          
+          <div ng-show="posts && posts.length == 0" class="card">
+            <div class="item item-text-wrap">
+                No results found!
+            </div>
+        </div>
         </div>
     </ion-content>
 </ion-view>
