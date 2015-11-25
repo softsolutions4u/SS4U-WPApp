@@ -389,15 +389,25 @@ angular.module('starter.controllers', [])
          *
          * @returns null
          */
-        .controller('SettingsCtrl', function($scope, $localStorage){
-            $localStorage.$default({pushNotificationStatus: true});
+        .controller('SettingsCtrl', ['$scope', '$localStorage', '$ionicLoading', 'settingsService', function($scope, $localStorage, $ionicLoading, settingsService){
             $scope.pushNotification  = {};
-            $scope.pushNotification.checked = $localStorage.pushNotificationStatus;
-
+            settingsService.getNotificationStatus().then(function(status){
+                $scope.pushNotification.checked = status;
+            });
             $scope.pushNotificationChange = function() {
-                $localStorage.pushNotificationStatus = $scope.pushNotification.checked;
+                settingsService.changeNotificationStatus($scope.pushNotification.checked).then(function(n) {
+                    if ("ok" === n.status) {
+                        $scope.pushNotification.checked = n.notificationStatus;
+                    }
+                }, function(e) {
+                    //Ionic 'Error occured. try after sometime' text
+                    $ionicLoading.show({
+                        template: 'Error occured. try after sometime',
+                        duration: 3000
+                    });
+                });
             };
-        })
+        }])
 
         /**
          * View 'Bookmark' posts
