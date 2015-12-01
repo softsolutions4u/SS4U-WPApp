@@ -747,3 +747,6 @@ audio:not([controls]) {
         padding-top: 0;
     }
 }
+.scroll-content{
+    margin-bottom:47px;
+}

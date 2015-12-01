@@ -3,7 +3,7 @@ angular.module("underscore", []).factory("_", function() {
     return window._
 }),
 angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
-        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics, $cordovaKeyboard, $cordovaSplashscreen, PushNotificationService) {
+        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics, $cordovaKeyboard, $cordovaSplashscreen, PushNotificationService, $localStorage) {
             $ionicPlatform.ready(function () {
                 if (ionic.Platform.isWebView()) {
                     $cordovaSplashscreen.hide();
@@ -21,8 +21,6 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                     // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
-
-                PushNotificationService.register();
                 $ionicAnalytics.register();
 
             });
@@ -44,7 +42,10 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                 
                 //Check whether the user is logged in or not
                 AccessService.userIsLoggedIn().then(function(res) {
-                    if ( toState.data.auth ) {
+                    if (toState.data.auth ) {
+                        if(!$localStorage.gcmTokenId){
+                          PushNotificationService.register();
+                        }
                         res === false && (event.preventDefault(), $state.go("greet"));
                     } else {
                         res === true && (event.preventDefault(), $state.go("app.home", {}, { reload: true }));
