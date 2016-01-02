@@ -22,7 +22,9 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                     StatusBar.styleDefault();
                 }
                 $ionicAnalytics.register();
-
+                if ($localStorage.gcmTokenId) {
+                    PushNotificationService.register();
+                }
             });
             
             /*
@@ -42,10 +44,10 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                 
                 //Check whether the user is logged in or not
                 AccessService.userIsLoggedIn().then(function(res) {
-                    if (toState.data.auth ) {
-                        if(!$localStorage.gcmTokenId){
-                          PushNotificationService.register();
-                        }
+                    if (res === true && !$localStorage.gcmTokenId) {
+                        PushNotificationService.register();
+                    }
+                    if (toState.data.auth) {
                         res === false && (event.preventDefault(), $state.go("greet"));
                     } else {
                         res === true && (event.preventDefault(), $state.go("app.home", {}, { reload: true }));
