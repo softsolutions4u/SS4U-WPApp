@@ -61,6 +61,7 @@ body {
     height: 100%;
     float: left;
     position: relative;
+    background-position: calc(45% + 10px) calc(45% - 10px);
 }
 
 /* ----------Start Greet View -----------*/
@@ -75,7 +76,6 @@ body {
 
 
 .greet-view h1 {
-    font-size: 48px;
     text-shadow: 0 1px 0 #000;
     color: #fff;
     font-weight: 800;
