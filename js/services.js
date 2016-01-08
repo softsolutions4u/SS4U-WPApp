@@ -311,6 +311,30 @@ angular.module("starter.services", [])
                 }
             };
         }])
+
+        .service('AdMobService', ['ADMOB_ANDROID_KEY', function(ADMOB_ANDROID_KEY){
+
+            this.showBanner = function() {
+                if ( !AdMob ) {
+                    return;
+                }
+
+                var admobKey = ionic.Platform.isAndroid() ? ADMOB_ANDROID_KEY : false;
+
+                if (!admobKey) {
+                    return;
+                }
+
+                AdMob.createBanner( {
+                    adId: admobKey,
+                    position: AdMob.AD_POSITION.BOTTOM_CENTER,
+                    autoShow: true
+                } );
+
+            };
+
+        }])
+
         .service('settingsService', ['$http', '$q', 'WORDPRESS_API_URL', '$localStorage', function ($http, $q, WORDPRESS_API_URL, $localStorage) {
             this.changeNotificationStatus = function (status) {
                 var s = $q.defer();

@@ -3,7 +3,7 @@ angular.module("underscore", []).factory("_", function() {
     return window._
 }),
 angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics', 'ngCordova', 'ngStorage', 'starter.directives', 'starter.controllers', 'starter.services', 'starter.factory', 'starter.filters', 'starter.config', 'underscore', 'angularMoment', 'youtube-embed'])
-        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics, $cordovaKeyboard, $cordovaSplashscreen, PushNotificationService, $localStorage) {
+        .run(function ($ionicPlatform, AccessService, $state, $rootScope, ConnectivityMonitor, $ionicAnalytics, $cordovaKeyboard, $cordovaSplashscreen, PushNotificationService, $localStorage, AdMobService) {
             $ionicPlatform.ready(function () {
                 if (ionic.Platform.isWebView()) {
                     $cordovaSplashscreen.hide();
@@ -21,6 +21,8 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
                     // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
+
+                AdMobService.showBanner();
                 $ionicAnalytics.register();
                 if ($localStorage.gcmTokenId) {
                     PushNotificationService.register();

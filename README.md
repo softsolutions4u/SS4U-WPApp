@@ -15,7 +15,7 @@ Installation
 
 ```
 $ sudo npm install -g ionic cordova
-$ sudo ionic start myApp balnk
+$ sudo ionic start myApp blank
 ```
 For social sharing include cordova plugin [Social Sharing plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
 
@@ -47,6 +47,10 @@ cordova plugin add org.apache.cordova.network-information
 For push notification add plugin [$cordovaPush](http://ngcordova.com/docs/plugins/pushNotifications/)
 ```
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+```
+For AdMob add plugin [AdMob](https://github.com/floatinghotpot/cordova-admob-pro)
+```
+cordova plugin add cordova-plugin-admobpro
 ```
 
 Replace the _www_ folder with the current branch files.
