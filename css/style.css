@@ -61,7 +61,7 @@ body {
     height: 100%;
     float: left;
     position: relative;
-    background-position: calc(45% + 10px) calc(45% - 10px);
+    background-position: 45% 45%;
 }
 
 /* ----------Start Greet View -----------*/
