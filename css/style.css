@@ -741,6 +741,9 @@ audio:not([controls]) {
 .platform-android .action-sheet-cancel {
    display: block;
 }
+h1.col span{
+    text-transform: none; 
+}
 
 @media ( max-height: 380px ) {
     .greet-view .head-title {

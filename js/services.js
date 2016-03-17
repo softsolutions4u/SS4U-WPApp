@@ -289,7 +289,7 @@ angular.module("starter.services", [])
         .service('WordpressPushService', ['$http', '$q', '$state', '$ionicPopup', '$localStorage', 'WORDPRESS_API_URL', function($http, $q, $state, $ionicPopup, $localStorage, WORDPRESS_API_URL) {
             this.storeDeviceToken = function(platform, token) {
                 var s = $q.defer();
-                return $http.jsonp(WORDPRESS_API_URL + 'gcmpush/register/?id=' + token +'&callback=JSON_CALLBACK').success(function(e) {
+                return $http.jsonp(WORDPRESS_API_URL + 'ipa_push/register/?id=' + token +'&callback=JSON_CALLBACK').success(function(e) {
                     $localStorage.gcmTokenId = token;
                     s.resolve(e);
                 }).error(function(e) {
@@ -314,7 +314,7 @@ angular.module("starter.services", [])
         .service('settingsService', ['$http', '$q', 'WORDPRESS_API_URL', '$localStorage', function ($http, $q, WORDPRESS_API_URL, $localStorage) {
             this.changeNotificationStatus = function (status) {
                 var s = $q.defer();
-                var notificationStatusApi = WORDPRESS_API_URL + 'gcmpush/changeStatus/?id=' + $localStorage.gcmTokenId + '&status=' + status + '&callback=JSON_CALLBACK';
+                var notificationStatusApi = WORDPRESS_API_URL + 'ipa_push/change_status/?id=' + $localStorage.gcmTokenId + '&status=' + status + '&callback=JSON_CALLBACK';
                 return $http.jsonp(notificationStatusApi).success(function (e) {
                   s.resolve(e);
                 }).error(function (e) {
@@ -324,7 +324,7 @@ angular.module("starter.services", [])
 
             this.getNotificationStatus = function () {
                 var g = $q.defer();
-                var notificationStatusApi = WORDPRESS_API_URL + 'gcmpush/getStatus/?id=' + $localStorage.gcmTokenId + '&callback=JSON_CALLBACK';
+                var notificationStatusApi = WORDPRESS_API_URL + 'ipa_push/get_status/?id=' + $localStorage.gcmTokenId + '&callback=JSON_CALLBACK';
                 return $http.jsonp(notificationStatusApi).success(function (e) {
                   g.resolve(e);
                 }).error(function (e) {
