@@ -13,9 +13,10 @@
             </div>
         </form>
         <div class="list">
-
+          {{post_type=false;""}}
             <div ng-repeat="post in posts">
-                <a class="item post-items-list item-icon-right" ui-sref="app.post({postId : {{post.id}}})" >                
+                <a ng-if="post.type === 'post'" class="item post-items-list item-icon-right" ui-sref="app.post({postId : {{post.id}}})" >                
+                  {{post_type = true;""}}
                     <span ng-style="{{'square'| getRandomTileStyle}}" class="post-item-thumbnail">{{post.title| getTileText: 2}}</span>
                     <span class="post-item-content">
                         <h2 >{{post.title}}</h2>
@@ -24,8 +25,7 @@
                     <i class="icon ion-arrow-right-c"></i>
                 </a>
             </div>
-          
-          <div ng-show="posts && posts.length == 0" class="card">
+          <div ng-show="posts && posts.length === 0 && !post_type" class="card">
             <div class="item item-text-wrap">
                 No results found!
             </div>

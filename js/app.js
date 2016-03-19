@@ -152,6 +152,7 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.analytics
 
                     .state('app.categories', {
                         url: "/categories",
+                        cache: false,
                         views: {
                             menuContent: {
                                 templateUrl: "templates/categories.html",

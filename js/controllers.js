@@ -324,20 +324,41 @@ angular.module('starter.controllers', [])
          * 
          * @param {type} $scope            data model
          * @param {type} $http             Send http request and receive Return response
+         * @param {type} $ionicLoading     'Loading' image / text
          * @param {type} WORDPRESS_API_URL Wordpress API url
          * @returns null
          */
-        .controller('CategoryCtrl', function ($scope, $http, WORDPRESS_API_URL) {
+        .controller('CategoryCtrl', function ($scope, $http, $ionicLoading, WORDPRESS_API_URL) {
             // Get categories
             var categoryApi = WORDPRESS_API_URL + "get_category_index/?callback=JSON_CALLBACK";
 
+            //Refresh categories
+            $scope.doRefresh = function () {
+            $scope.isLoading = true;
+            //Display 'Loading Category' text
+            $ionicLoading.show({
+              template: 'Loading Category'
+            });
             $http.jsonp(categoryApi).
-                    success(function (data) {
-                        $scope.categories = data.categories;
-                    }).
-                    error(function () {
-                        console.log('Category load error.');
+                    then(function (n) {
+                      $scope.$broadcast('scroll.refreshComplete');
+                      if ("ok" === n.data.status) {
+                        $scope.categories = n.data.categories;
+                        $ionicLoading.hide();
+                      } else {
+                        $ionicLoading.show({
+                            template: 'Error occured. try after sometime',
+                            duration: 3000
+                        });
+                      }
+                    }, function (e) {
+                      $ionicLoading.show({
+                        template: 'Error occured. try after sometime',
+                        duration: 3000
+                      });
                     });
+          };
+          $scope.doRefresh();
         })
         
         /**
@@ -345,23 +366,36 @@ angular.module('starter.controllers', [])
          * 
          * @param {type} $scope            data model
          * @param {type} $http             Send http request and receive Return response
+         * @param {type} $ionicLoading     'Loading' image / text
          * @param {type} WORDPRESS_API_URL Wordpress API url
          * @returns null
          */
-        .controller('SearchCtrl', function ($scope, $http, WORDPRESS_API_URL) {
+        .controller('SearchCtrl', function ($scope, $http, $ionicLoading, WORDPRESS_API_URL) {
             $scope.formData = {};
             //Get 'Search' results
             $scope.getResults = function () {
                 var searchApi = WORDPRESS_API_URL + 'get_search_results?search=' + $scope.formData.term + '&callback=JSON_CALLBACK';
+                $scope.isLoading = true;
+                $ionicLoading.show({
+                    template: 'Searching Posts..'
+                });
                 $http.jsonp(searchApi).
-                        success(function (data) {
-                            if ("ok" === data.status) {
-                                $scope.posts = data.posts;
-                            }
-                        }).
-                        error(function () {
-                            console.log('Search results error.');
+                    then(function (n) {
+                      if ("ok" === n.data.status) {
+                        $scope.posts = n.data.posts;
+                        $ionicLoading.hide();
+                      } else {
+                        $ionicLoading.show({
+                          template: 'Error occured. try after sometime',
+                          duration: 3000
                         });
+                      }
+                    }, function (e) {
+                      $ionicLoading.show({
+                        template: 'Error occured. try after sometime',
+                        duration: 3000
+                      });
+                    }); 
             };
         })
         

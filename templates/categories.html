@@ -1,12 +1,18 @@
 <ion-view view-title="Categories" class="categories main-menu-bg">
     <ion-content>
+      <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
         <ion-list>
           <a ng-repeat="category in categories" class="item item-thumbnail-left item-icon-right" href="#/app/categories/{{category.id}}">
             <img src="img/ionic.png" />
-            <h2>{{category.title}}</h2>
+            <h2>{{category.title}} ({{category.post_count}})</h2>
             <p>{{category.description}}</p>
             <i class="icon ion-arrow-right-c"></i>
           </a>
         </ion-list>
+        <div ng-show="categories && categories.length == 0" class="card">
+            <div class="item item-text-wrap">
+               No Categories found!
+            </div>
+        </div>
     </ion-content>
 </ion-view>

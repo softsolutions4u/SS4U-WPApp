@@ -275,7 +275,7 @@ angular.module("starter.services", [])
                             if (notification.foreground) {
                                 WordpressPushService.handleForeGroundNotification(notification);
                             } else {
-                                if (notification.payload && notification.payload.type === 'new_post') {
+                                if (notification.payload && (notification.payload.type === 'new' || notification.payload.type === 'edit')) {
                                     $state.go('app.post', {postId: notification.payload.postId});
                                 }
                             }
@@ -298,15 +298,17 @@ angular.module("starter.services", [])
             };
 
             this.handleForeGroundNotification = function(notification) {
-                if (notification.payload && notification.payload.type === 'new_post') {
+                if (notification.payload && (notification.payload.type === 'new' || notification.payload.type === 'edit')) {
+                    var title = notification.payload.type === 'new' ? 'New Post added' : 'Post is updated';
                     var confirmPopup = $ionicPopup.confirm({
-                        title: 'New Post added',
+                        title: title,
                         template: notification.payload.title + ' ' + notification.payload.message
                     });
                     confirmPopup.then(function(res) {
                         if(res) {
                           $state.go('app.post', {postId: notification.payload.postId});
                         }
+                        confirmPopup.close();
                     });
                 }
             };
